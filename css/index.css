@@ -1,0 +1,59 @@
+h1{
+    margin-bottom: 0;
+}
+
+.carousel .controls{
+    text-align: center;
+}
+
+#next, .back, .placement{
+    display: inline-block;
+}
+
+.cta-wrapper, .placement .showcase{
+    display: flex;
+}
+
+.cta-wrapper{
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.carousel .content{
+    display: grid;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.carousel{
+    margin-top: 50px;
+}
+
+.carousel .controls button{
+    padding: 10px 15px;
+}
+
+.carousel .controls img{
+    display: block;
+    margin: 0 auto;
+    width: 20px;
+}
+
+.placement{
+    margin: 0 10px;
+}
+
+.placement .showcase{
+    gap: 5px;
+}
+
+.placement .showcase div{
+    border: 1px solid;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+}
+
+.placement .showcase .current{
+    background-color: #000;
+}

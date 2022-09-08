@@ -1,0 +1,91 @@
+@media (min-width: 600px) {
+    /*Navigation and footer
+    __________________________________*/
+    .navigation-open{
+        display: none;
+    }
+
+    nav ul{
+        display: flex;
+        padding-bottom: 0;
+    }
+
+    nav ul, footer ul{
+        flex-direction: row;
+    }
+
+    nav ul li a{
+        padding: 15px 20px;
+    }
+
+    footer ul li{
+        border-left: 1px solid;
+        padding-left: 10px;
+    }
+
+    footer ul li:last-child{
+        border-right: 1px solid;
+        padding-right: 10px;
+    }
+
+    /*Post page
+    __________________________________*/
+    .post-content{
+        padding: 0 20px;
+    }
+    
+    .book-cover{
+        float: left;
+        margin: 0 25px 20px 0;
+    }
+
+    .additional-photo{
+        float: right;
+        margin: 0 0 20px 25px;
+    }
+
+    /*List of blog posts page
+    __________________________________*/
+    .list-of-posts{
+        display: flex;
+        flex-direction: row-reverse;
+        gap: 20px;
+    }
+
+    .list-of-posts .list{
+        flex: 2;
+    }
+
+    .list-of-posts .sort{
+        flex: 1;
+        border-left: 1px solid;
+        border-bottom: none;
+        padding-left: 20px;
+    }
+}
+
+@media (min-width: 800px) {
+    /*Index page
+    __________________________________*/
+    .carousel .content{
+        grid-template: 1fr / repeat(3, 1fr);
+    }
+
+    .carousel .controls-top{
+        display: none;
+    }
+
+    .carousel .post{
+        min-height: 500px;
+    }
+
+    /*About page
+    __________________________________*/
+    .knowledge-is-power{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .knowledge-is-power{
+        gap: 60px;
+    }
+}

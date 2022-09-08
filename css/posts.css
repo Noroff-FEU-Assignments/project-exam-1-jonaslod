@@ -1,0 +1,35 @@
+.list .content, .sort{
+    display: flex;
+    flex-direction: column;
+}
+
+.list .content{
+    gap: 20px;
+}
+
+.sort{
+    border-bottom: 1px solid;
+    margin-bottom: 20px;
+    padding: 25px;
+}
+
+h2{
+    margin: 0 0 20px 0;
+}
+
+#search{
+    padding: 10px 5px;
+    margin-bottom: 20px;
+}
+
+button{
+    margin-top: 20px;
+}
+
+.controls{
+    text-align: center;
+}
+
+.list .controls .cta{
+    display: none;
+}

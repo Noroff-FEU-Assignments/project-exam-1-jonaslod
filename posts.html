@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="View the entire catalogue of posts on The Library" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/posts.css" rel="stylesheet" />
+    <link href="css/media.css" rel="stylesheet" />
+    <link rel="icon" href="images/icon/favicon.png" />
+    <title>List of blog posts | The Library</title>
+    <!-- Hotjar Tracking Code for https://willowy-elf-6d8d7c.netlify.app/ -->
+    <script>
+      (function (h, o, t, j, a, r) {
+        h.hj =
+          h.hj ||
+          function () {
+            (h.hj.q = h.hj.q || []).push(arguments);
+          };
+        h._hjSettings = { hjid: 3148932, hjsv: 6 };
+        a = o.getElementsByTagName("head")[0];
+        r = o.createElement("script");
+        r.async = 1;
+        r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+        a.appendChild(r);
+      })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
+    </script>
+  </head>
+  <body id="top-of-page">
+    <header>
+      <div class="banner">
+        <div class="banner-content">
+          <a href="index.html">
+            <span>The</span>
+            Library
+          </a>
+        </div>
+      </div>
+      <label class="navigation-open" for="navigation-open">
+        <img src="images/icon/menu-icon.png" alt="Main navigation open icon" />
+      </label>
+      <input type="checkbox" id="navigation-open" />
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="posts.html" class="active">Posts</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h1>List of blog posts</h1>
+      <div class="list-of-posts">
+        <section class="sort">
+          <h2>Looking for something specific?</h2>
+          <input id="search" type="text" name="search" placeholder="Search ..." />
+          <div>
+            <input type="checkbox" id="autobiography" name="category" value="3" />
+            <label for="autobiography">Autobiography</label>
+          </div>
+          <div>
+            <input type="checkbox" id="bildungsroman" name="category" value="4" />
+            <label for="bildungsroman">Bildungsroman</label>
+          </div>
+          <div>
+            <input type="checkbox" id="biography" name="category" value="5" />
+            <label for="biography">Biography</label>
+          </div>
+          <div>
+            <input type="checkbox" id="coming-of-age-story" name="category" value="6" />
+            <label for="coming-of-age-story">Coming-of-age-story</label>
+          </div>
+          <div>
+            <input type="checkbox" id="crime-fiction" name="category" value="7" />
+            <label for="crime-fiction">Crime fiction</label>
+          </div>
+          <div>
+            <input type="checkbox" id="dystopian-fiction" name="category" value="8" />
+            <label for="dystopian-fiction">Dystopian fiction</label>
+          </div>
+          <div>
+            <input type="checkbox" id="epistolary-novel" name="category" value="9" />
+            <label for="epistolary-novel">Epistolary novel</label>
+          </div>
+          <div>
+            <input type="checkbox" id="fantasy-fiction" name="category" value="10" />
+            <label for="fantasy-fiction">Fantasy fiction</label>
+          </div>
+          <div>
+            <input type="checkbox" id="high-fantasy" name="category" value="11" />
+            <label for="high-fantasy">High fantasy</label>
+          </div>
+          <div>
+            <input type="checkbox" id="mystery" name="category" value="12" />
+            <label for="mystery">Mystery</label>
+          </div>
+          <div>
+            <input type="checkbox" id="political-fiction" name="category" value="13" />
+            <label for="political-fiction">Political fiction</label>
+          </div>
+          <div>
+            <input type="checkbox" id="political-satire" name="category" value="14" />
+            <label for="political-satire">Political satire</label>
+          </div>
+          <div>
+            <input type="checkbox" id="romance-novel" name="category" value="15" />
+            <label for="romance-novel">Romance novel</label>
+          </div>
+          <div>
+            <input type="checkbox" id="science-fiction" name="category" value="16" />
+            <label for="science-fiction">Science fiction</label>
+          </div>
+          <div>
+            <input type="checkbox" id="thriller" name="category" value="17" />
+            <label for="thriller">Thriller</label>
+          </div>
+          <div>
+            <input type="checkbox" id="young-adult-fiction" name="category" value="18" />
+            <label for="young-adult-fiction">Young adult fiction</label>
+          </div>
+          <button class="cta">Search in posts</button>
+        </section>
+        <div class="list">
+          <div class="content">
+            <h2>Loading ...</h2>
+            <div class="loading"></div>
+          </div>
+          <div class="controls">
+            <button class="cta">Show more posts</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <section>
+        <h3>Shortcuts</h3>
+        <ul>
+          <li><a href="#top-of-page">Top of page</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="posts.html">Posts</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </section>
+      <div>2022 - The Library</div>
+    </footer>
+    <script src="js/script.js" type="module"></script>
+    <script src="js/posts.js" type="module"></script>
+  </body>
+</html>

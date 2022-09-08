@@ -1,0 +1,185 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body, nav ul{
+    margin: 0;
+}
+
+.banner, .navigation-open, nav{
+    background-color: #1C0E09;
+}
+
+nav ul, main, footer section, footer div{
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.banner-content span, .navigation-open{
+    display: block;
+}
+
+.banner-content, #navigation-open:checked ~ nav ul, footer ul, .categories, .date{
+    display: flex;
+}
+
+.banner-content a, nav ul li a, footer ul li a, .link, .cta, .post{
+    text-decoration: none;
+}
+
+.active, .banner-content a:hover, nav ul li a:hover, footer ul li a:hover, .link:hover, .cta:hover, .post:hover > h2, .post:hover > h3{
+    text-decoration: underline;
+}
+
+.banner-content a, nav ul li a, .cta{
+    color: #fff;
+}
+
+footer ul li a, .post{
+    color: #000;
+}
+
+nav ul, h1, h2, h3 {
+    font-family: Palatino, Palatino Linotype, Book Antiqua, Georgia, serif;
+    font-weight: normal;
+}
+
+nav ul, footer ul{
+    flex-direction: column;
+    list-style-type: none;
+    padding: 0;
+}
+
+#navigation-open, nav ul, .form-error{
+    display: none;
+}
+
+.navigation-open, nav ul, footer div{
+    text-align: center;
+}
+
+p, button{
+    font-family: Calibri ,Candara, Segoe, Segoe UI, Arial, sans-serif; 
+}
+
+.italic, .link{
+    font-style: italic;
+}
+
+.banner-content, .categories, .date{
+    align-items: center;
+}
+
+nav ul, footer ul, .categories, .date{
+    gap: 10px;
+}
+
+.categories, .date{
+    margin-bottom: 16px;
+}
+
+body{
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+main, footer{
+    padding: 10px 30px 20px;
+}
+
+h1{
+    font-size: 2rem;
+}
+
+.banner{
+    background-image: url("../images/row-of-books.jpg");
+    background-position: center;
+    height: 200px;
+    font-family: Goudy Old Style, Garamond, Big Caslon, Times New Roman, serif; 
+}
+
+.banner-content{
+    justify-content: center;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    font-size: 3rem;
+}
+
+.banner-content span{
+    font-size: 1rem;
+    margin-bottom: -10px;
+}
+
+.navigation-open{
+    padding: 10px 0;
+}
+
+.navigation-open img, .categories img, .date img{
+    width: 25px;
+}
+
+nav{
+    padding: 0 10px;
+    margin-bottom: 10px;
+}
+
+nav ul{
+    list-style-type: none;
+    padding-bottom: 10px;
+}
+
+nav ul li a{
+    display: inline-block;
+    padding: 10px 30px;
+}
+
+footer{
+    border-top: 1px solid #000;
+    margin-top: 80px;
+}
+
+footer div{
+    margin-top: 30px;
+}
+
+.link{
+    color: #0A5485;
+}
+
+.form-error{
+    color: #F00;
+}
+
+.cta{
+    background-color: #0C6452;
+    border: none;
+    padding: 10px 20px;
+}
+
+.cta:hover{
+    cursor: pointer;
+}
+
+.post{
+    border: 1px solid #000;
+    padding: 20px;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.loading{
+    border: 16px solid #1C0E09;
+    border-top: 16px solid #0C6452;
+    border-radius: 100%;
+    height: 100px;
+    width: 100px;
+    animation: spin 1.5s linear infinite;
+}
+  
+@keyframes spin{
+    0%{transform: rotate(0deg)}
+    100%{transform: rotate(360deg);}
+}

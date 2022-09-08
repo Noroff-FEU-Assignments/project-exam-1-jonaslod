@@ -2,13 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="A book loving web developers blog about the different books he reads" />
+    <meta name="description" content="A specific blog post on The Library blog about books" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="css/style.css" rel="stylesheet" />
-    <link href="css/index.css" rel="stylesheet" />
+    <link href="css/post.css" rel="stylesheet" />
     <link href="css/media.css" rel="stylesheet" />
     <link rel="icon" href="images/icon/favicon.png" />
-    <title>Home | The Library</title>
+    <title>Loading ... | The Library</title>
     <!-- Hotjar Tracking Code for https://willowy-elf-6d8d7c.netlify.app/ -->
     <script>
       (function (h, o, t, j, a, r) {
@@ -42,7 +42,7 @@
       <input type="checkbox" id="navigation-open" />
       <nav>
         <ul>
-          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="posts.html">Posts</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
@@ -50,35 +50,11 @@
       </nav>
     </header>
     <main>
-      <section>
-        <h1>Welcome to The Library</h1>
-        <p>
-          Here at the Library we believe that words speak louder than action. The Library is a blog where I post about all the different books I read,
-          and how they've shaped the world. I hope you find my thoughts interesting, and I invite you to explore my blog.
-        </p>
-        <p>Want to get an overview of all the books I've read?</p>
-        <div class="cta-wrapper">
-          <a class="cta" href="posts.html">Explore my posts</a>
-        </div>
+      <section class="post-content">
+        <h1>Loading ...</h1>
+        <div class="loading"></div>
       </section>
-      <section class="carousel">
-        <h2>Latest posts</h2>
-        <div class="controls controls-top">
-          <button class="cta back"><img src="images/icon/back-icon.png" alt="Back icon" /></button>
-          <div class="placement"><span class="italic">Loading ...</span></div>
-          <button class="cta next"><img src="images/icon/next-icon.png" alt="Next icon" /></button>
-        </div>
-        <div class="shadow-left"></div>
-        <div class="content">
-          <div class="loading"></div>
-        </div>
-        <div class="shadow-right"></div>
-        <div class="controls controls-bottom">
-          <button class="cta back"><img src="images/icon/back-icon.png" alt="Back icon" /></button>
-          <div class="placement"><span class="italic">Loading ...</span></div>
-          <button class="cta next"><img src="images/icon/next-icon.png" alt="Next icon" /></button>
-        </div>
-      </section>
+      <div class="modal"></div>
     </main>
     <footer>
       <section>
@@ -94,6 +70,6 @@
       <div>2022 - The Library</div>
     </footer>
     <script src="js/script.js" type="module"></script>
-    <script src="js/index.js" type="module"></script>
+    <script src="js/post.js" type="module"></script>
   </body>
 </html>

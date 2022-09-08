@@ -1,0 +1,38 @@
+.book-cover img, .additional-photo img, .modal, .modal .img-wrapper img{
+    width: 100%;
+}
+
+.date{
+    margin-bottom: 30px;   
+}
+
+.book-cover, .additional-photo{
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    max-width: 200px;
+}
+
+.book-cover img, .additional-photo img{
+    height: auto;
+}
+
+.modal{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.80);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal .img-wrapper{
+    text-align: center;
+}
+
+.modal .img-wrapper img{
+    max-width: 80vw;
+    max-height: 80vh;
+}
