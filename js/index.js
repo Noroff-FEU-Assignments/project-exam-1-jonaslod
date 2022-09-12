@@ -85,6 +85,8 @@ try {
         placementShowcases.forEach((placement) => {
             placement.innerHTML = placementHtml;
         });
+
+        document.querySelector(".carousel h2").scrollIntoView();
     }
     
     showCarousel();
