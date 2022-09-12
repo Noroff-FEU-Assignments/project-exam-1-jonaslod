@@ -37,6 +37,9 @@ try {
             }
         }
         showCarousel();
+        if(window.innerWidth < 800){
+            document.querySelector(".carousel h2").scrollIntoView();
+        }
     }
     
     function showCarousel(){
