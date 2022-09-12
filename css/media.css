@@ -85,7 +85,7 @@
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .knowledge-is-power{
-        gap: 60px;
+    .knowledge-is-power-img{
+        margin-left: 60px;
     }
 }

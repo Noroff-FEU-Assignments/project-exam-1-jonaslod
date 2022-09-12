@@ -49,7 +49,7 @@ try {
                 listContent.innerHTML += `
                     <a class="post" href="post.html?id=${id}">
                         <h2>${title}</h2>
-                        <div class="categories"><img src="images/icon/category-icon.png" />${findInCategories(postCategories, categories)}</div>
+                        <div class="categories"><img src="images/icon/category-icon.png" alt="List of categories"/>${findInCategories(postCategories, categories)}</div>
                         <div class="date"><img src="images/icon/date-icon.png" alt="Post date"/>${day}/${month}/${year}</div>
                         ${excerpt}
                         <p class="link">Continue reading >></p>
