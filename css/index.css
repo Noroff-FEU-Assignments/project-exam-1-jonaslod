@@ -57,3 +57,7 @@ h1{
 .placement .showcase .current{
     background-color: #000;
 }
+
+.hidden{
+    display: none;
+}
