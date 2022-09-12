@@ -39,7 +39,7 @@ try {
     });
 
     modal.addEventListener("click", (event) => {
-        if(event.target.className === "modal"){
+        if(event.target.className != "image-showcase"){
             modal.style.display = "none";
         }
     });
@@ -47,8 +47,11 @@ try {
     function showModal(image){
         modal.style.display = "grid";
         modal.innerHTML = `
+            <div class="close-modal" title="Close image">
+                <img src="images/icon/exit-icon.png" alt="Close modal" />
+            </div>
             <div class="img-wrapper">
-                <img src="${image.src}" alt="${image.alt}" />
+                <img class="image-showcase" src="${image.src}" alt="${image.alt}" />
             </div>
         `;
     }

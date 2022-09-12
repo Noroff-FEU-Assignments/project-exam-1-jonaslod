@@ -9,6 +9,7 @@ const categories = await fetchFromApi("https://marieogjonas.com/jonas/skole/the-
 const carousel = document.querySelector(".carousel .content");
 const controlBtns = document.querySelectorAll(".carousel .controls button");
 const placementShowcases = document.querySelectorAll(".carousel .controls .placement");
+const controlsTop = document.querySelector(".controls-top");
 
 try {
     controlBtns.forEach((btn) => {
@@ -39,6 +40,7 @@ try {
     }
     
     function showCarousel(){
+        controlsTop.classList.remove("hidden");
         carousel.innerHTML = "";
         let carouselIndex = firstPostIndex;
         while(carouselIndex < (firstPostIndex + numberOfPostsToShow)){
@@ -63,6 +65,7 @@ try {
                 `;
             }
             else{
+                controlsTop.classList.add("hidden");
                 break;
             }
             carouselIndex++;
@@ -86,7 +89,6 @@ try {
     
     showCarousel();
 }
-
 catch (error) {
     showError(document.querySelector(".carousel"), "Could not load latest blog posts.");
 }
