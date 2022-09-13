@@ -1,9 +1,11 @@
 import postToApi from "./components/postToApi.js";
+import showError from "./components/showError.js";
 
 const form = document.querySelector("form");
 const formError = document.getElementById("form-error");
 form.addEventListener("submit", validateForm);
-const feedback = document.querySelector(".feedback")
+const feedback = document.querySelector(".feedback");
+const cta = document.querySelector("form .cta");
 
 const name = document.getElementById("your-name");
 const nameError = document.getElementById("form-error_name");
@@ -30,34 +32,38 @@ async function validateForm(event){
 
     if(nameIsValid && emailIsValid && subjectIsValid && messageIsValid){
         formError.style.display = "none";
-        document.querySelector("form .cta").disabled = true;
+        cta.disabled = true;
+        cta.className = "cta-disabled";
         feedback.innerHTML = `
             <span class="italic">Loading ...</span>
         `;
         try {
             const url = "https://marieogjonas.com/jonas/skole/the-library/wp-json/contact-form-7/v1/contact-forms/140/feedback";
             const formData = new FormData(form);
-            const response = await postToApi(url, "POST", formData);
-            if(response === 200){
+            const responseStatus = await postToApi(url, formData);
+            if(responseStatus === 200){
                 feedback.innerHTML = `
                     <span class="bold">Message sent!</span>
                 `;
             }
+            else{
+                feedback.innerHTML = `
+                    <span class="bold">Could not send message, try again later</span>
+                `;
+            }
         }
         catch (error) {
-            feedback.innerHTML = `
-                <span class="bold">Could not send message.</span>
-            `;
+            showError(feedback, "An error occurred while trying to send your message, try again later.");
             console.log(error);
         }
     }
 
     else{
         formError.style.display = "block";
-        if(!nameIsValid){showError(name, nameError)}
-        if(!emailIsValid){showError(email, emailError)}
-        if(!subjectIsValid){showError(subject, subjectError)}
-        if(!messageIsValid){showError(message, messageError)}
+        if(!nameIsValid){showFormError(name, nameError)}
+        if(!emailIsValid){showFormError(email, emailError)}
+        if(!subjectIsValid){showFormError(subject, subjectError)}
+        if(!messageIsValid){showFormError(message, messageError)}
     }
 }
 
@@ -68,12 +74,12 @@ function validateInput(validation, input, errorContainer){
         return true;
     }
     else{
-        showError(input, errorContainer);
+        showFormError(input, errorContainer);
         return false;
     }
 }
 
-function showError(input, errorContainer){
+function showFormError(input, errorContainer){
     input.style.border = "1px solid #F00";
     errorContainer.style.display = "block";
 }

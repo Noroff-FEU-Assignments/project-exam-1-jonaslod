@@ -1,7 +1,7 @@
-export default async function postToApi(url, method, body){
+export default async function postToApi(url, body){
     try{
         const response = await fetch(url, {
-            method: method,
+            method: "POST",
             body: body
         });
         return response.status;

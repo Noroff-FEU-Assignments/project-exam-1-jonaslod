@@ -24,3 +24,10 @@ form input{
 .form-error{
     margin: 0;
 }
+
+.cta-disabled{
+    background-color: #fff;
+    color: #000;
+    border: 2px solid #0C6452;
+    padding: 10px 20px;
+}
