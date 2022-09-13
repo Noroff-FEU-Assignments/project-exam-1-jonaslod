@@ -23,11 +23,11 @@ nav ul, main, footer section, footer div{
     display: flex;
 }
 
-.banner-content a, nav ul li a, footer ul li a, .link, .cta, .post{
+.banner-content a, nav ul li a, footer a, .link, .cta, .post{
     text-decoration: none;
 }
 
-.active, .banner-content a:hover, nav ul li a:hover, footer ul li a:hover, .link:hover, .cta:hover, .post:hover > h2, .post:hover > h3{
+.active, .banner-content a:hover, nav ul li a:hover, footer a:hover, .link:hover, .cta:hover, .post:hover > h2, .post:hover > h3{
     text-decoration: underline;
 }
 
@@ -35,7 +35,7 @@ nav ul, main, footer section, footer div{
     color: #fff;
 }
 
-footer ul li a, .post{
+footer a, .post{
     color: #000;
 }
 

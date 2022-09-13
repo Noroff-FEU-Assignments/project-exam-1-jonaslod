@@ -1,35 +1,47 @@
+import postToApi from "./components/postToApi.js";
+
 const form = document.querySelector("form");
 const formError = document.getElementById("form-error");
 form.addEventListener("submit", validateForm);
 
-const name = document.getElementById("name");
+const name = document.getElementById("your-name");
 const nameError = document.getElementById("form-error_name");
 let nameIsValid;
 name.addEventListener("blur", () => nameIsValid = validateInput(validateLength(name.value, 5), name, nameError));
 
-const email = document.getElementById("email");
+const email = document.getElementById("your-email");
 const emailError = document.getElementById("form-error_email");
 let emailIsValid;
 email.addEventListener("blur", () => emailIsValid = validateInput(validateEmail(email.value), email, emailError));
 
-const subject = document.getElementById("subject");
+const subject = document.getElementById("your-subject");
 const subjectError = document.getElementById("form-error_subject");
 let subjectIsValid;
 subject.addEventListener("blur", () => subjectIsValid = validateInput(validateLength(subject.value, 15), subject, subjectError));
 
-const message = document.getElementById("message");
+const message = document.getElementById("your-message");
 const messageError = document.getElementById("form-error_message");
 let messageIsValid;
 message.addEventListener("blur", () => messageIsValid = validateInput(validateLength(message.value, 25), message, messageError));
 
-function validateForm(event){
+async function validateForm(event){
     event.preventDefault();
 
     if(nameIsValid && emailIsValid && subjectIsValid && messageIsValid){
         formError.style.display = "none";
+        document.querySelector("form .cta").disabled = true;
         document.querySelector(".feedback").innerHTML = `
             <span class="bold">Message sent!</span>
         `;
+        try {
+            const url = "marieogjonas.com/jonas/skole/the-library/wp-json/contact-form-7/v1/contact-forms/140/feedback";
+            const formData = new FormData(form);
+            const response = await postToApi(url, "POST", formData);
+            console.log(response);
+        }
+        catch (error) {
+            console.log(error);
+        }
     }
 
     else{

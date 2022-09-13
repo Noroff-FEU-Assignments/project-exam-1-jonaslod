@@ -26,7 +26,8 @@ h1{
 }
 
 .carousel{
-    margin-top: 50px;
+    margin-top: 30px;
+    padding-top: 30px;
 }
 
 .carousel .controls button{
