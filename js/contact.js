@@ -34,7 +34,7 @@ async function validateForm(event){
             <span class="bold">Message sent!</span>
         `;
         try {
-            const url = "marieogjonas.com/jonas/skole/the-library/wp-json/contact-form-7/v1/contact-forms/140/feedback";
+            const url = "https://marieogjonas.com/jonas/skole/the-library/wp-json/contact-form-7/v1/contact-forms/140/feedback";
             const formData = new FormData(form);
             const response = await postToApi(url, "POST", formData);
             console.log(response);
