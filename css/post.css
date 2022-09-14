@@ -21,6 +21,41 @@
     height: auto;
 }
 
+.post-comments{
+    display: none;
+}
+
+.post-comments form, .post-comments form div, .posted-comments{
+    display: flex;
+    flex-direction: column;
+}
+
+.post-comments form, .posted-comments{
+    gap: 20px;
+}
+
+.post-comments form input{
+    padding: 10px 5px;
+}
+
+.post-comments form button{
+    margin-top: 10px;
+}
+
+.error{
+    color: #F00;
+}
+
+.success{
+    color: #060;
+}
+
+.posted-comments .comment{
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+
 .modal{
     display: none;
     top: 0;

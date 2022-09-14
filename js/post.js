@@ -11,6 +11,9 @@ const id = parameters.get("id");
 const post = await fetchFromApi(`https://marieogjonas.com/jonas/skole/the-library/wp-json/wp/v2/posts/${id}`);
 const categories = await fetchFromApi("https://marieogjonas.com/jonas/skole/the-library/wp-json/wp/v2/categories?per_page=20");
 const pageContent = document.querySelector(".post-content");
+const form = document.querySelector("form");
+form.addEventListener("submit", postComment);
+const feedback = document.querySelector(".feedback");
 const modal = document.querySelector(".modal");
 
 try {
@@ -39,6 +42,8 @@ try {
         });
     });
 
+    document.querySelector(".post-comments").style.display = "block";
+
     modal.addEventListener("click", (event) => {
         if(event.target.className != "image-showcase"){
             modal.style.display = "none";
@@ -61,36 +66,88 @@ catch (error) {
     showError(pageContent, "Blog post could not be found.");
 }
 
-//new code for publishing comment
-const form = document.querySelector("form");
-form.addEventListener("submit", validateForm);
-
-async function validateForm(event){
+async function postComment(event){
     event.preventDefault();
 
-    try {
-        const url = `https://marieogjonas.com/jonas/skole/the-library/wp-json/wp/v2/comments?post=${id}`;
-        const username = "Jonas";
-        const password = "XX7M OYKI 5Q7s psSn 3N4W lg7r";
-        const formData = JSON.stringify({
-            author_name: document.querySelector("#author_name").value,
-            content: document.querySelector("#content").value,
-            status: "approved"
-        });
-        console.log(...formData);
-        const options = {
-            method: "POST",
-            body: formData,
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Basic ${btoa(username + ":" + password)}`
+    const name = document.querySelector("#author_name").value;
+    const comment = document.querySelector("#content").value;
+
+    if(name.trim() && comment.trim()){
+        feedback.innerHTML = `<span class="italic">Loading ...</span>`;
+        try {
+            const url = `https://marieogjonas.com/jonas/skole/the-library/wp-json/wp/v2/comments?post=${id}`;
+            const username = "Jonas";
+            const password = "XX7M OYKI 5Q7s psSn 3N4W lg7r";
+            const formData = JSON.stringify({
+                author_name: name,
+                content: comment,
+                status: "approved"
+            });
+    
+            const options = {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Basic ${btoa(username + ":" + password)}`
+                }
+            }
+    
+            const responseStatus = await postToApi(url, options);
+            console.log(responseStatus);
+            if(responseStatus === 201){
+                feedback.innerHTML = `<span class="success">Comment posted!</span>`;
+                form.reset();
+                showComments();
+            }
+            else if(responseStatus === 409){
+                feedback.innerHTML = `<span class="error">Could not post comment, since comment already exists!</span>`;
+            }
+            else{
+                feedback.innerHTML = `<span class="error">Something went wrong when trying to post your comment, try again later.</span>`;
             }
         }
-
-        const responseStatus = await postToApi(url, options);
-        console.log(responseStatus);
+        catch (error) {
+            showError(feedback, "An error occurred while trying to post your comment, try again later.");
+            console.log(error);
+        }
     }
-    catch (error) {
-        console.log(error);
+    else{
+        feedback.innerHTML = `<span class="error">Please enter your name and a comment</span>`;
     }
 }
+
+async function showComments(){
+    const commentsHeader = document.querySelector(".comments h3");
+    commentsHeader.innerHTML = `<h3>Loading ...</h3>`;
+    const commentsWrapper = document.querySelector(".posted-comments");
+    commentsWrapper.innerHTML = "";
+    const postedComments = await fetchFromApi(`https://marieogjonas.com/jonas/skole/the-library/wp-json/wp/v2/comments?post=${id}`);
+
+    try {
+        commentsHeader.innerHTML = `<h3>Comments</h3>`;
+        if(typeof postedComments === "object" && postedComments.length>0){
+            postedComments.forEach((comment) => {
+                commentsWrapper.innerHTML += `
+                    <div class="comment">
+                        <p class="author">${comment.author_name} says:</p>
+                        ${comment.content.rendered}
+                    </div>
+                `;
+            });
+        }
+    
+        else{
+            commentsWrapper.innerHTML = `
+            <div class="comment">
+                <p>There are currently no comments in this post.</p>
+                <p>Why not add one yourself?</p>
+            </div>`;
+        }
+    }
+    catch (error) {
+        showError(document.querySelector(".comments"), "Comments could not be loaded.");
+    }
+}
+
+showComments();

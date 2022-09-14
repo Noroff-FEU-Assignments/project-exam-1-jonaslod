@@ -54,7 +54,8 @@
         <h1>Loading ...</h1>
         <div class="loading"></div>
       </section>
-      <section class="post-comment">
+      <section class="post-comments">
+        <h2>Leave a comment</h2>
         <form>
           <div>
             <label for="author_name">Name: </label>
@@ -63,11 +64,16 @@
           </div>
           <div>
             <label for="content">Message: </label>
-            <textarea id="content" name="content"></textarea>
+            <textarea id="content" name="content" placeholder="Comment ..."></textarea>
             <p id="form-error_message" class="form-error">Please enter a message</p>
           </div>
           <button class="cta">Send message</button>
         </form>
+        <div class="feedback"></div>
+        <section class="comments">
+          <h3>Loading ...</h3>
+          <div class="posted-comments"></div>
+        </section>
       </section>
       <div class="modal"></div>
     </main>
