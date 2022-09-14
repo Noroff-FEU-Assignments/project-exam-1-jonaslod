@@ -68,25 +68,32 @@ form.addEventListener("submit", validateForm);
 async function validateForm(event){
     event.preventDefault();
 
-    const url = `https://marieogjonas.com/jonas/skole/the-library/wp-json/wp/v2/comments?post=${id}`;
-    const username = "Jonas";
-    const password = "XX7M OYKI 5Q7s psSn 3N4W lg7r";
-    // let formData = new FormData(form);
-    // formData.set("status", "publish");
-    const formData = JSON.stringify({
-        author_name: document.querySelector("#author_name").value,
-        content: document.querySelector("#content").value,
-        status: "publish"
-    });
-    const options = {
-        method: "POST",
-        body: formData,
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Basic ${btoa(username + ":" + password)}`
+    try {
+        const url = `https://marieogjonas.com/jonas/skole/the-library/wp-json/wp/v2/comments?post=${id}`;
+        const username = "Jonas";
+        const password = "XX7M OYKI 5Q7s psSn 3N4W lg7r";
+        // let formData = new FormData(form);
+        // formData.set("status", "publish");
+        const formData = JSON.stringify({
+            author_name: document.querySelector("#author_name").value,
+            content: {
+                rendered: document.querySelector("#content").value
+            },
+            status: "pending"
+        });
+        const options = {
+            method: "POST",
+            body: formData,
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Basic ${btoa(username + ":" + password)}`
+            }
         }
-    }
 
-    const responseStatus = await postToApi(url, options);
-    console.log(responseStatus);
+        const responseStatus = await postToApi(url, options);
+        console.log(responseStatus);
+    }
+    catch (error) {
+        console.log(error);
+    }
 }
