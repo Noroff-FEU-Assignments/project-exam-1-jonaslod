@@ -76,11 +76,10 @@ async function validateForm(event){
         // formData.set("status", "publish");
         const formData = JSON.stringify({
             author_name: document.querySelector("#author_name").value,
-            content: {
-                rendered: document.querySelector("#content").value
-            },
-            status: "pending"
+            content: document.querySelector("#content").value,
+            status: "approved"
         });
+        console.log(...formData);
         const options = {
             method: "POST",
             body: formData,
