@@ -2,6 +2,7 @@ import fetchFromApi from "./components/fetchFromApi.js";
 import checkUndefined from "./components/checkUndefined.js";
 import findInCategories from "./components/findInCategories.js";
 import showError from "./components/showError.js";
+import postToApi from "./components/postToApi.js";
 
 const queryString = document.location.search;
 const parameters = new URLSearchParams(queryString);
@@ -58,4 +59,29 @@ try {
 }
 catch (error) {
     showError(pageContent, "Blog post could not be found.");
+}
+
+//new code for publishing comment
+const form = document.querySelector("form");
+form.addEventListener("submit", validateForm);
+
+async function validateForm(event){
+    event.preventDefault();
+
+    const url = `https://marieogjonas.com/jonas/skole/the-library/wp-json/wp/v2/comments?post=${id}`;
+    const username = "Jonas";
+    const password = "XX7M OYKI 5Q7s psSn 3N4W lg7r";
+    let formData = new FormData(form);
+    formData.set("status", "pending");
+    const options = {
+        method: "POST",
+        body: formData,
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Basic ${btoa(username + ":" + password)}` 
+        }
+    }
+
+    const responseStatus = await postToApi(url, options);
+    console.log(responseStatus);
 }

@@ -54,6 +54,21 @@
         <h1>Loading ...</h1>
         <div class="loading"></div>
       </section>
+      <section class="post-comment">
+        <form>
+          <div>
+            <label for="author_name">Name: </label>
+            <input id="author_name" type="text" name="author_name" placeholder="Name ..." />
+            <p id="form-error_name" class="form-error">Please enter your name</p>
+          </div>
+          <div>
+            <label for="content">Message: </label>
+            <textarea id="content" name="content"></textarea>
+            <p id="form-error_message" class="form-error">Please enter a message</p>
+          </div>
+          <button class="cta">Send message</button>
+        </form>
+      </section>
       <div class="modal"></div>
     </main>
     <footer>

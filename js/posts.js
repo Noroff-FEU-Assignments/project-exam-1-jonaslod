@@ -10,6 +10,7 @@ const viewMore = document.querySelector(".list .controls .cta");
 const searchBtn = document.querySelector(".sort .cta");
 const categoryCheckboxes = document.getElementsByName("category");
 const searchInput = document.querySelector("#search");
+const searchFeedback = document.querySelector(".search-feedback");
 
 try {
     viewMore.onclick = () => {showPosts();};
@@ -72,10 +73,14 @@ try {
             viewMore.style.display = "none";
         }
     }
-    
+
     function filterPosts(selectedCategories, searchValue){
         numberOfPostsShown = 0;
         let filteredPosts = posts;
+
+        let feedbackHtml = document.createElement("p");
+        feedbackHtml.innerHTML = "Searching for posts";
+
         if(selectedCategories.length>0){
             filteredPosts = [];
             posts.forEach((post) => {
@@ -88,11 +93,20 @@ try {
                     }
                 }
             });
+            feedbackHtml.innerHTML += ` containing categories <span class="italic">${findInCategories(selectedCategories, categories).replaceAll(",", " /")}</span>`;
         }
-        if(search){
-            filteredPosts = filteredPosts.filter(post => post.title.rendered.toLowerCase().includes(searchValue.toLowerCase()))
+        if(searchValue){
+            filteredPosts = filteredPosts.filter(post => post.title.rendered.toLowerCase().includes(searchValue.toLowerCase()));
+            feedbackHtml.innerHTML += ` with text "<span class="italic">${searchValue}</span>"`;
         }
         postsToShow = filteredPosts;
+
+        feedbackHtml.innerHTML += ".";
+        searchFeedback.appendChild(feedbackHtml);
+        setTimeout(()=>{
+            searchFeedback.firstChild.remove();
+        }, 5000);
+        
         showPosts();
     }
     
