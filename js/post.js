@@ -72,13 +72,11 @@ async function validateForm(event){
         const url = `https://marieogjonas.com/jonas/skole/the-library/wp-json/wp/v2/comments?post=${id}`;
         const username = "Jonas";
         const password = "XX7M OYKI 5Q7s psSn 3N4W lg7r";
-        let formData = new FormData(form);
-        formData.set("status", "approved");
-        // const formData = JSON.stringify({
-        //     author_name: document.querySelector("#author_name").value,
-        //     content: document.querySelector("#content").value,
-        //     status: "pending"
-        // });
+        const formData = JSON.stringify({
+            author_name: document.querySelector("#author_name").value,
+            content: document.querySelector("#content").value,
+            status: "approved"
+        });
         console.log(...formData);
         const options = {
             method: "POST",
