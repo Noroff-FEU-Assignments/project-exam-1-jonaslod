@@ -72,7 +72,7 @@ async function validateForm(event){
     const username = "Jonas";
     const password = "XX7M OYKI 5Q7s psSn 3N4W lg7r";
     let formData = new FormData(form);
-    formData.set("status", "pending");
+    formData.set("status", "publish");
     const options = {
         method: "POST",
         body: formData,
