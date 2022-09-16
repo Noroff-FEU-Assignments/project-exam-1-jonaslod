@@ -3,7 +3,7 @@ export default async function postToApi(url, options){
         const response = await fetch(url, options);
         return response.status;
     }
-    catch (error) {
+    catch(error){
         console.log(error);    
     }
 }

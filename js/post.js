@@ -1,4 +1,5 @@
 import fetchFromApi from "./components/fetchFromApi.js";
+import { baseUrl, username, applicationPassword } from "./components/apiInfo.js";
 import checkUndefined from "./components/checkUndefined.js";
 import findInCategories from "./components/findInCategories.js";
 import showError from "./components/showError.js";
@@ -8,8 +9,8 @@ const queryString = document.location.search;
 const parameters = new URLSearchParams(queryString);
 const id = parameters.get("id");
 
-const post = await fetchFromApi(`https://marieogjonas.com/jonas/skole/the-library/wp-json/wp/v2/posts/${id}`);
-const categories = await fetchFromApi("https://marieogjonas.com/jonas/skole/the-library/wp-json/wp/v2/categories?per_page=20");
+const post = await fetchFromApi(`${baseUrl}posts/${id}`);
+const categories = await fetchFromApi(`${baseUrl}categories?per_page=20`);
 const pageContent = document.querySelector(".post-content");
 const form = document.querySelector("form");
 form.addEventListener("submit", postComment);
@@ -75,26 +76,23 @@ async function postComment(event){
     if(name.trim() && comment.trim()){
         feedback.innerHTML = `<span class="italic">Loading ...</span>`;
         try {
-            const url = `https://marieogjonas.com/jonas/skole/the-library/wp-json/wp/v2/comments?post=${id}`;
-            const username = "Jonas";
-            const password = "XX7M OYKI 5Q7s psSn 3N4W lg7r";
+            const url = `${baseUrl}comments?post=${id}`;
             const formData = JSON.stringify({
                 author_name: name,
                 content: comment,
                 status: "approved"
             });
-    
+
             const options = {
                 method: "POST",
                 body: formData,
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Basic ${btoa(username + ":" + password)}`
+                    "Authorization": `Basic ${btoa(username + ":" + applicationPassword)}`
                 }
             }
     
             const responseStatus = await postToApi(url, options);
-            console.log(responseStatus);
             if(responseStatus === 201){
                 feedback.innerHTML = `<span class="success">Comment posted!</span>`;
                 form.reset();
@@ -122,7 +120,7 @@ async function showComments(){
     commentsHeader.innerHTML = `<h3>Loading ...</h3>`;
     const commentsWrapper = document.querySelector(".posted-comments");
     commentsWrapper.innerHTML = "";
-    const postedComments = await fetchFromApi(`https://marieogjonas.com/jonas/skole/the-library/wp-json/wp/v2/comments?post=${id}`);
+    const postedComments = await fetchFromApi(`${baseUrl}comments?post=${id}`);
 
     try {
         commentsHeader.innerHTML = `<h3>Comments</h3>`;
@@ -130,7 +128,10 @@ async function showComments(){
             postedComments.forEach((comment) => {
                 commentsWrapper.innerHTML += `
                     <div class="comment">
-                        <p class="author">${comment.author_name} says:</p>
+                        <div class="author">
+                            <div class="profile-image"><img src="images/icon/profile-icon.png" alt="Profile icon"/></div>
+                            <p>${comment.author_name} says:</p>
+                        </div>
                         ${comment.content.rendered}
                     </div>
                 `;

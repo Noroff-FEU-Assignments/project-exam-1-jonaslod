@@ -48,6 +48,7 @@ async function validateForm(event){
                 feedback.innerHTML = `
                     <span class="bold">Message sent!</span>
                 `;
+                form.reset();
             }
             else{
                 feedback.innerHTML = `

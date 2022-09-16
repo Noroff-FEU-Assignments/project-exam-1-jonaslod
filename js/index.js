@@ -1,10 +1,11 @@
 import fetchFromApi from "./components/fetchFromApi.js";
+import { baseUrl } from "./components/apiInfo.js";
 import findInCategories from "./components/findInCategories.js";
 import checkUndefined from "./components/checkUndefined.js";
 import showError from "./components/showError.js";
 
-const posts = await fetchFromApi("https://marieogjonas.com/jonas/skole/the-library/wp-json/wp/v2/posts?per_page=20");
-const categories = await fetchFromApi("https://marieogjonas.com/jonas/skole/the-library/wp-json/wp/v2/categories?per_page=20");
+const posts = await fetchFromApi(`${baseUrl}posts?per_page=20`);
+const categories = await fetchFromApi(`${baseUrl}categories?per_page=20`);
 
 const carousel = document.querySelector(".carousel .content");
 const controlBtns = document.querySelectorAll(".carousel .controls button");
