@@ -30,7 +30,7 @@
 
     /*Post page
     __________________________________*/
-    .post-content{
+    .post-content, .post-comments{
         padding: 0 20px;
     }
     

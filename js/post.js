@@ -15,15 +15,20 @@ const pageContent = document.querySelector(".post-content");
 const form = document.querySelector("form");
 form.addEventListener("submit", postComment);
 const feedback = document.querySelector(".feedback");
+const commentsHeader = document.querySelector(".comments h3");
+const commentsWrapper = document.querySelector(".posted-comments");
 const modal = document.querySelector(".modal");
 
 try {
     const title = checkUndefined(post.title.rendered, " title");
     const postCategories = checkUndefined(post.categories, " categories");
-    const date = checkUndefined(post.date, " date");
-    const year = date.slice(0,4);
-    const month = date.slice(5,7);
-    const day = date.slice(8,10);
+    let date = checkUndefined(post.date, " date");
+    if(date!="undefined date"){
+        const year = date.slice(0,4);
+        const month = date.slice(5,7);
+        const day = date.slice(8,10);
+        date = `${day}/${month}/${year}`;
+    }
     const content = checkUndefined(post.content.rendered, " content");
 
     document.title = `${title} | The Library`;
@@ -31,7 +36,7 @@ try {
     pageContent.innerHTML = `
         <h1>${title}</h1>
         <div class="categories"><img src="../images/icon/category-icon.png" alt="List of categories"/>${findInCategories(postCategories, categories)}</div>
-        <div class="date"><img src="images/icon/date-icon.png" alt="Post date"/>${day}/${month}/${year}</div>
+        <div class="date"><img src="images/icon/date-icon.png" alt="Post date"/>${date}</div>
         ${content}
     `;
 
@@ -116,9 +121,7 @@ async function postComment(event){
 }
 
 async function showComments(){
-    const commentsHeader = document.querySelector(".comments h3");
     commentsHeader.innerHTML = `<h3>Loading ...</h3>`;
-    const commentsWrapper = document.querySelector(".posted-comments");
     commentsWrapper.innerHTML = "";
     const postedComments = await fetchFromApi(`${baseUrl}comments?post=${id}`);
 
@@ -126,15 +129,27 @@ async function showComments(){
         commentsHeader.innerHTML = `<h3>Comments</h3>`;
         if(typeof postedComments === "object" && postedComments.length>0){
             postedComments.forEach((comment) => {
-                commentsWrapper.innerHTML += `
-                    <div class="comment">
-                        <div class="author">
-                            <div class="profile-image"><img src="images/icon/profile-icon.png" alt="Profile icon"/></div>
-                            <p>${comment.author_name} says:</p>
-                        </div>
-                        ${comment.content.rendered}
-                    </div>
-                `;
+                let commentAuthor = checkUndefined(comment.author_name, " author");
+                let commentContent = checkUndefined(comment.content.rendered.replaceAll("<p>", "").replaceAll("</p>", ""), " comment");
+
+                const currentComment = document.createElement("div");
+                currentComment.setAttribute("class", "comment");
+
+                const authorWrapper = document.createElement("div");
+                authorWrapper.setAttribute("class", "author");
+                authorWrapper.innerHTML = `<div class="profile-image"><img src="images/icon/profile-icon.png" alt="Profile icon"/></div>`;
+
+                const author = document.createElement("p");
+                author.innerText = commentAuthor + " says:";
+                authorWrapper.appendChild(author);
+
+                const commentWrapper = document.createElement("p");
+                commentWrapper.innerText = commentContent;
+
+                currentComment.appendChild(authorWrapper);
+                currentComment.appendChild(commentWrapper);
+                
+                commentsWrapper.appendChild(currentComment);
             });
         }
     

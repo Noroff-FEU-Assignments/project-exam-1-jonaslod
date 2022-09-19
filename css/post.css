@@ -21,6 +21,10 @@
     height: auto;
 }
 
+.post-content{
+    margin-bottom: 70px;
+}
+
 .post-comments{
     display: none;
 }
