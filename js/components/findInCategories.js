@@ -3,10 +3,10 @@ export default function findInCategories(postCategories = [], categoryList = [])
     if(typeof postCategories === "object" && postCategories.length>0){
         postCategories.forEach((id) => {
             const category = categoryList.find(cat => cat.id === id);
-            if(html.length!=0){
-                html += ", "
-            }
             if(category){
+                if(html.length!=0){
+                    html += ", "
+                }
                 html += category.name;
             }
         });

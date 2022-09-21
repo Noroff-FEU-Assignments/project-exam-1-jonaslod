@@ -15,7 +15,6 @@ const pageContent = document.querySelector(".post-content");
 const form = document.querySelector("form");
 form.addEventListener("submit", postComment);
 const feedback = document.querySelector(".feedback");
-const commentsHeader = document.querySelector(".comments h3");
 const commentsWrapper = document.querySelector(".posted-comments");
 const modal = document.querySelector(".modal");
 
@@ -98,6 +97,7 @@ async function postComment(event){
             }
     
             const responseStatus = await postToApi(url, options);
+            
             if(responseStatus === 201){
                 feedback.innerHTML = `<span class="success">Comment posted!</span>`;
                 form.reset();
@@ -109,6 +109,7 @@ async function postComment(event){
             else{
                 feedback.innerHTML = `<span class="error">Something went wrong when trying to post your comment, try again later.</span>`;
             }
+
         }
         catch (error) {
             showError(feedback, "An error occurred while trying to post your comment, try again later.");
@@ -121,19 +122,14 @@ async function postComment(event){
 }
 
 async function showComments(){
-    commentsHeader.innerHTML = `<h3>Loading ...</h3>`;
     commentsWrapper.innerHTML = "";
     const postedComments = await fetchFromApi(`${baseUrl}comments?post=${id}`);
 
     try {
-        commentsHeader.innerHTML = `<h3>Comments</h3>`;
         if(typeof postedComments === "object" && postedComments.length>0){
             postedComments.forEach((comment) => {
                 let commentAuthor = checkUndefined(comment.author_name, " author");
                 let commentContent = checkUndefined(comment.content.rendered.replaceAll("<p>", "").replaceAll("</p>", ""), " comment");
-
-                const currentComment = document.createElement("div");
-                currentComment.setAttribute("class", "comment");
 
                 const authorWrapper = document.createElement("div");
                 authorWrapper.setAttribute("class", "author");
@@ -146,6 +142,8 @@ async function showComments(){
                 const commentWrapper = document.createElement("p");
                 commentWrapper.innerText = commentContent;
 
+                const currentComment = document.createElement("div");
+                currentComment.setAttribute("class", "comment");
                 currentComment.appendChild(authorWrapper);
                 currentComment.appendChild(commentWrapper);
                 

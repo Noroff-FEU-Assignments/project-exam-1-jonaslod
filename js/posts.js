@@ -1,35 +1,32 @@
 import fetchFromApi from "./components/fetchFromApi.js";
 import { baseUrl } from "./components/apiInfo.js";
+import displayPostShowcase from "./components/displayPostShowcase.js";
 import findInCategories from "./components/findInCategories.js";
-import checkUndefined from "./components/checkUndefined.js";
 import showError from "./components/showError.js";
 
-const posts = await fetchFromApi(`${baseUrl}posts?per_page=20`);
+const allPosts = await fetchFromApi(`${baseUrl}posts?per_page=20`);
 const categories = await fetchFromApi(`${baseUrl}categories?per_page=20`);
 const listContent = document.querySelector(".list .content");
 const viewMore = document.querySelector(".list .controls .cta");
-const searchBtn = document.querySelector(".sort .cta");
-const categoryCheckboxes = document.getElementsByName("category");
-const searchInput = document.querySelector("#search");
 const searchFeedback = document.querySelector(".search-feedback");
 
 try {
+    let numberOfPostsShown = 0;
+
     viewMore.onclick = () => {showPosts();};
-    searchBtn.onclick = () => {
+    document.querySelector(".sort .cta").onclick = () => {
+        const search = document.getElementById("search").value.trim();
         const selectedCategories = [];
-        categoryCheckboxes.forEach((cat) => {
+        document.getElementsByName("category").forEach((cat) => {
             if(cat.checked){
                 selectedCategories.push(parseInt(cat.value));
             }
         });
-        const search = searchInput.value.trim();
-        filterPosts(selectedCategories, search);
+        const sortBy = document.getElementById("sort-by-new").checked ? "new" : "old";
+        filterPosts(selectedCategories, search, sortBy);
     }
 
-    let postsToShow = posts;
-    let numberOfPostsShown = 0;
-
-    function showPosts(){
+    function showPosts(postsToShow = allPosts){
         if(postsToShow.length>0){
             if(numberOfPostsShown === 0){
                 listContent.innerHTML = "";
@@ -38,26 +35,7 @@ try {
     
             const numberOfPostsToShow = numberOfPostsShown + 10;
             while(numberOfPostsShown < numberOfPostsToShow){
-                const post = postsToShow[numberOfPostsShown];
-                const id = checkUndefined(post.id);
-                const title = checkUndefined(post.title.rendered, " title");
-                const postCategories = checkUndefined(post.categories, " categories");
-                const date = checkUndefined(post.date, " date");
-                const year = date.slice(0,4);
-                const month = date.slice(5,7);
-                const day = date.slice(8,10);
-                const excerpt = checkUndefined(post.excerpt.rendered, " excerpt");
-            
-                listContent.innerHTML += `
-                    <a class="post" href="post.html?id=${id}">
-                        <h2>${title}</h2>
-                        <div class="categories"><img src="images/icon/category-icon.png" alt="List of categories"/>${findInCategories(postCategories, categories)}</div>
-                        <div class="date"><img src="images/icon/date-icon.png" alt="Post date"/>${day}/${month}/${year}</div>
-                        ${excerpt}
-                        <p class="link">Continue reading >></p>
-                    </a>
-                `;
-    
+                displayPostShowcase(listContent, postsToShow[numberOfPostsShown], categories, true);
                 numberOfPostsShown++;
                 if(numberOfPostsShown === postsToShow.length){
                     viewMore.style.display = "none";
@@ -75,16 +53,16 @@ try {
         }
     }
 
-    function filterPosts(selectedCategories, searchValue){
+    function filterPosts(selectedCategories, searchValue, sortValue){
         numberOfPostsShown = 0;
-        let filteredPosts = posts;
+        let filteredPosts = allPosts;
 
-        let feedbackHtml = document.createElement("p");
+        const feedbackHtml = document.createElement("p");
         feedbackHtml.innerHTML = "Searching for posts";
 
         if(selectedCategories.length>0){
             filteredPosts = [];
-            posts.forEach((post) => {
+            allPosts.forEach((post) => {
                 for(let i = 0; i < post.categories.length; i++){
                     for(let j = 0; j < selectedCategories.length; j++){
                         if(post.categories[i] === selectedCategories[j]){
@@ -100,7 +78,13 @@ try {
             filteredPosts = filteredPosts.filter(post => post.title.rendered.toLowerCase().includes(searchValue.toLowerCase()));
             feedbackHtml.innerHTML += ` with text "<span class="italic">${searchValue}</span>"`;
         }
-        postsToShow = filteredPosts;
+
+        if(sortValue === "new"){
+            filteredPosts.sort((a,b) => convertDate(a.date) < convertDate(b.date));
+        }
+        else{
+            filteredPosts.sort((a,b) => convertDate(a.date) > convertDate(b.date));
+        }
 
         feedbackHtml.innerHTML += ".";
         searchFeedback.appendChild(feedbackHtml);
@@ -108,11 +92,19 @@ try {
             searchFeedback.firstChild.remove();
         }, 5000);
         
-        showPosts();
+        showPosts(filteredPosts);
+    }
+
+    function convertDate(dateString){
+        const lastDateIndex = dateString.indexOf("T");
+        const date = dateString.substring(0, lastDateIndex)
+        const convertedDate = parseInt(date.replaceAll("-", ""));
+        return convertedDate;
     }
     
     showPosts();
 }
 catch (error) {
     showError(listContent, "Could not load blog posts");
+    viewMore.style.display = "none";
 }

@@ -1,25 +1,23 @@
 import fetchFromApi from "./components/fetchFromApi.js";
 import { baseUrl } from "./components/apiInfo.js";
-import findInCategories from "./components/findInCategories.js";
-import checkUndefined from "./components/checkUndefined.js";
+import displayPostShowcase from "./components/displayPostShowcase.js";
 import showError from "./components/showError.js";
 
 const posts = await fetchFromApi(`${baseUrl}posts?per_page=20`);
 const categories = await fetchFromApi(`${baseUrl}categories?per_page=20`);
 
 const carousel = document.querySelector(".carousel .content");
-const controlBtns = document.querySelectorAll(".carousel .controls button");
-const placementShowcases = document.querySelectorAll(".carousel .controls .placement");
 const controlsTop = document.querySelector(".controls-top");
 
 try {
-    controlBtns.forEach((btn) => {
+    const numberOfPostsToShow = 3;
+    let firstPostIndex = 0;
+    
+    document.querySelectorAll(".carousel .controls button").forEach((btn) => {
         btn.addEventListener("click", (event) => {
             moveCarousel(event.currentTarget)
         });
     });
-    const numberOfPostsToShow = 3;
-    let firstPostIndex = 0;
 
     function moveCarousel(movement){
         if(movement.className === "cta next"){
@@ -46,33 +44,14 @@ try {
     function showCarousel(){
         controlsTop.classList.remove("hidden");
         carousel.innerHTML = "";
-        let carouselIndex = firstPostIndex;
-        while(carouselIndex < (firstPostIndex + numberOfPostsToShow)){
-            if(carouselIndex < posts.length){
-                const post = posts[carouselIndex];
-                const id = checkUndefined(post.id);
-                const title = checkUndefined(post.title.rendered, " title");
-                const postCategories = checkUndefined(post.categories, " categories");
-                const excerpt = checkUndefined(post.excerpt.rendered, " excerpt");
-                const date = checkUndefined(post.date, " date");
-                const year = date.slice(0,4);
-                const month = date.slice(5,7);
-                const day = date.slice(8,10);
-    
-                carousel.innerHTML += `
-                    <a class="post" href="post.html?id=${id}">
-                        <h3>${title}</h3>
-                        <div class="categories"><img src="images/icon/category-icon.png" alt="Post category"/>${findInCategories(postCategories, categories)}</div>
-                        <div class="date"><img src="images/icon/date-icon.png" alt="Post date"/>${day}/${month}/${year}</div>
-                        ${excerpt}
-                    </a>
-                `;
+        for(let i = firstPostIndex; i < (firstPostIndex + numberOfPostsToShow); i++){
+            if(i < posts.length){
+                displayPostShowcase(carousel, posts[i], categories);
             }
             else{
                 controlsTop.classList.add("hidden");
                 break;
             }
-            carouselIndex++;
         }
 
         let placementHtml = `<div class="showcase">`;
@@ -86,7 +65,7 @@ try {
         }
         placementHtml += "</div>";
 
-        placementShowcases.forEach((placement) => {
+        document.querySelectorAll(".carousel .controls .placement").forEach((placement) => {
             placement.innerHTML = placementHtml;
         });
     }

@@ -6,7 +6,7 @@ body, nav ul{
     margin: 0;
 }
 
-.banner, .navigation-open, nav{
+.banner, .navigation-hamburger, nav{
     background-color: #1C0E09;
 }
 
@@ -15,11 +15,11 @@ nav ul, main, footer section, footer div{
     margin: 0 auto;
 }
 
-.banner-content span, .navigation-open{
+.banner-content span, .navigation-hamburger{
     display: block;
 }
 
-.banner-content, #navigation-open:checked ~ nav ul, footer ul, .categories, .date{
+.banner-content, #navigation-hamburger:checked ~ nav ul, footer ul, .categories, .date{
     display: flex;
 }
 
@@ -50,11 +50,11 @@ nav ul, footer ul{
     padding: 0;
 }
 
-#navigation-open, nav ul, .form-error{
+#navigation-hamburger, nav ul, .form-error{
     display: none;
 }
 
-.navigation-open, nav ul, footer div{
+.navigation-hamburger, nav ul, footer div{
     text-align: center;
 }
 
@@ -111,11 +111,11 @@ h1{
     margin-bottom: -10px;
 }
 
-.navigation-open{
+.navigation-hamburger{
     padding: 10px 0;
 }
 
-.navigation-open img, .categories img, .date img{
+.navigation-hamburger img, .categories img, .date img{
     width: 25px;
 }
 

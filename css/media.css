@@ -1,7 +1,7 @@
 @media (min-width: 600px) {
     /*Navigation and footer
     __________________________________*/
-    .navigation-open{
+    .navigation-hamburger{
         display: none;
     }
 
@@ -46,6 +46,28 @@
 
     /*List of blog posts page
     __________________________________*/
+    .hamburger-indicator, .hamburger-content{
+        padding: 0;
+        border: 0;
+    }
+
+    .hamburger-indicator{
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    .hamburger-indicator::after{
+        content: ":";
+    }
+
+    .hamburger-indicator img{
+        display: none;
+    }
+
+    .hamburger-content{
+        display: block;
+    }
+    
     .list-of-posts{
         display: flex;
         flex-direction: row-reverse;

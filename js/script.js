@@ -1,10 +1,4 @@
-const navigationOpen = document.getElementById("navigation-open");
-const navigationIcon = document.querySelector(".navigation-open img");
-navigationOpen.addEventListener("click", () => {
-    if(navigationOpen.checked){
-        navigationIcon.src = "images/icon/exit-icon.png";
-    }
-    else{
-        navigationIcon.src = "images/icon/menu-icon.png";
-    }
+const navigation = document.getElementById("navigation-hamburger");
+navigation.addEventListener("click", () => {
+    document.querySelector(".navigation-hamburger img").src = navigation.checked ? "images/icon/exit-icon.png" : "images/icon/menu-icon.png";
 })

@@ -36,10 +36,10 @@
           </a>
         </div>
       </div>
-      <label class="navigation-open" for="navigation-open">
+      <label class="navigation-hamburger" for="navigation-hamburger">
         <img src="images/icon/menu-icon.png" alt="Main navigation open icon" />
       </label>
-      <input type="checkbox" id="navigation-open" />
+      <input type="checkbox" id="navigation-hamburger" />
       <nav>
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -56,68 +56,94 @@
           <h2>Looking for something specific?</h2>
           <input id="search" type="text" name="search" placeholder="Search ..." />
           <div>
-            <input type="checkbox" id="autobiography" name="category" value="3" />
-            <label for="autobiography">Autobiography</label>
+            <input type="checkbox" id="categories-hamburger" class="hamburger-checkbox" />
+            <label for="categories-hamburger" class="hamburger-indicator categories-hamburger-indicator">
+              Categories
+              <img src="images/icon/open-icon.png" alt="Open/close categories icon" />
+            </label>
+            <div class="hamburger-content available-categories">
+              <div>
+                <input type="checkbox" id="autobiography" name="category" value="3" />
+                <label for="autobiography">Autobiography</label>
+              </div>
+              <div>
+                <input type="checkbox" id="bildungsroman" name="category" value="4" />
+                <label for="bildungsroman">Bildungsroman</label>
+              </div>
+              <div>
+                <input type="checkbox" id="biography" name="category" value="5" />
+                <label for="biography">Biography</label>
+              </div>
+              <div>
+                <input type="checkbox" id="coming-of-age-story" name="category" value="6" />
+                <label for="coming-of-age-story">Coming-of-age-story</label>
+              </div>
+              <div>
+                <input type="checkbox" id="crime-fiction" name="category" value="7" />
+                <label for="crime-fiction">Crime fiction</label>
+              </div>
+              <div>
+                <input type="checkbox" id="dystopian-fiction" name="category" value="8" />
+                <label for="dystopian-fiction">Dystopian fiction</label>
+              </div>
+              <div>
+                <input type="checkbox" id="epistolary-novel" name="category" value="9" />
+                <label for="epistolary-novel">Epistolary novel</label>
+              </div>
+              <div>
+                <input type="checkbox" id="fantasy-fiction" name="category" value="10" />
+                <label for="fantasy-fiction">Fantasy fiction</label>
+              </div>
+              <div>
+                <input type="checkbox" id="high-fantasy" name="category" value="11" />
+                <label for="high-fantasy">High fantasy</label>
+              </div>
+              <div>
+                <input type="checkbox" id="mystery" name="category" value="12" />
+                <label for="mystery">Mystery</label>
+              </div>
+              <div>
+                <input type="checkbox" id="political-fiction" name="category" value="13" />
+                <label for="political-fiction">Political fiction</label>
+              </div>
+              <div>
+                <input type="checkbox" id="political-satire" name="category" value="14" />
+                <label for="political-satire">Political satire</label>
+              </div>
+              <div>
+                <input type="checkbox" id="romance-novel" name="category" value="15" />
+                <label for="romance-novel">Romance novel</label>
+              </div>
+              <div>
+                <input type="checkbox" id="science-fiction" name="category" value="16" />
+                <label for="science-fiction">Science fiction</label>
+              </div>
+              <div>
+                <input type="checkbox" id="thriller" name="category" value="17" />
+                <label for="thriller">Thriller</label>
+              </div>
+              <div>
+                <input type="checkbox" id="young-adult-fiction" name="category" value="18" />
+                <label for="young-adult-fiction">Young adult fiction</label>
+              </div>
+            </div>
           </div>
           <div>
-            <input type="checkbox" id="bildungsroman" name="category" value="4" />
-            <label for="bildungsroman">Bildungsroman</label>
-          </div>
-          <div>
-            <input type="checkbox" id="biography" name="category" value="5" />
-            <label for="biography">Biography</label>
-          </div>
-          <div>
-            <input type="checkbox" id="coming-of-age-story" name="category" value="6" />
-            <label for="coming-of-age-story">Coming-of-age-story</label>
-          </div>
-          <div>
-            <input type="checkbox" id="crime-fiction" name="category" value="7" />
-            <label for="crime-fiction">Crime fiction</label>
-          </div>
-          <div>
-            <input type="checkbox" id="dystopian-fiction" name="category" value="8" />
-            <label for="dystopian-fiction">Dystopian fiction</label>
-          </div>
-          <div>
-            <input type="checkbox" id="epistolary-novel" name="category" value="9" />
-            <label for="epistolary-novel">Epistolary novel</label>
-          </div>
-          <div>
-            <input type="checkbox" id="fantasy-fiction" name="category" value="10" />
-            <label for="fantasy-fiction">Fantasy fiction</label>
-          </div>
-          <div>
-            <input type="checkbox" id="high-fantasy" name="category" value="11" />
-            <label for="high-fantasy">High fantasy</label>
-          </div>
-          <div>
-            <input type="checkbox" id="mystery" name="category" value="12" />
-            <label for="mystery">Mystery</label>
-          </div>
-          <div>
-            <input type="checkbox" id="political-fiction" name="category" value="13" />
-            <label for="political-fiction">Political fiction</label>
-          </div>
-          <div>
-            <input type="checkbox" id="political-satire" name="category" value="14" />
-            <label for="political-satire">Political satire</label>
-          </div>
-          <div>
-            <input type="checkbox" id="romance-novel" name="category" value="15" />
-            <label for="romance-novel">Romance novel</label>
-          </div>
-          <div>
-            <input type="checkbox" id="science-fiction" name="category" value="16" />
-            <label for="science-fiction">Science fiction</label>
-          </div>
-          <div>
-            <input type="checkbox" id="thriller" name="category" value="17" />
-            <label for="thriller">Thriller</label>
-          </div>
-          <div>
-            <input type="checkbox" id="young-adult-fiction" name="category" value="18" />
-            <label for="young-adult-fiction">Young adult fiction</label>
+            <input type="checkbox" id="sort-by-hamburger" class="hamburger-checkbox" />
+            <label for="sort-by-hamburger" class="hamburger-indicator sort-by-hamburger-indicator">
+              Sort by
+              <img src="images/icon/open-icon.png" alt="Open/close sort by icon" />
+            </label>
+            <div class="hamburger-content available-sorting">
+              <div>
+                <input type="radio" id="sort-by-new" name="sort-by" value="new" checked />
+                <label for="sort-by-new">New</label>
+              </div>
+              <div>
+                <input type="radio" id="sort-by-old" name="sort-by" value="old" />
+                <label for="sort-by-old">Old</label>
+              </div>
+            </div>
           </div>
           <button class="cta">Search in posts</button>
           <div class="search-feedback"></div>
