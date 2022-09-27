@@ -61,7 +61,7 @@ try {
 
     showComments();
 }
-catch (error) {
+catch {
     showError(pageContent, "Blog post could not be found.");
 }
 
@@ -105,7 +105,7 @@ async function postComment(event){
             }
 
         }
-        catch (error) {
+        catch {
             showError(feedback, "An error occurred while trying to post your comment, try again later.");
         }
     }
@@ -162,7 +162,7 @@ async function showComments(){
             </div>`;
         }
     }
-    catch (error) {
+    catch {
         showError(document.querySelector(".comments"), "Comments could not be loaded.");
     }
 }

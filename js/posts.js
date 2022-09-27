@@ -108,7 +108,7 @@ try {
     
     showPosts();
 }
-catch (error) {
+catch {
     showError(listContent, "Could not load blog posts");
     viewMore.style.display = "none";
 }

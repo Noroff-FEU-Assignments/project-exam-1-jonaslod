@@ -69,6 +69,6 @@ try {
     
     showCarousel();
 }
-catch (error) {
+catch {
     showError(document.querySelector(".carousel"), "Could not load latest blog posts.");
 }

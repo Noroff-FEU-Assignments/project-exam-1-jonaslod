@@ -109,4 +109,8 @@
     .knowledge-is-power-img{
         margin-left: 60px;
     }
+
+    .knowledge-is-power-img img{
+        max-width: 300px;
+    }
 }
