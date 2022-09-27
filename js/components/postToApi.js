@@ -4,6 +4,6 @@ export default async function postToApi(url, options){
         return response.status;
     }
     catch(error){
-        console.log(error);    
+        console.log(error);
     }
 }

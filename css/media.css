@@ -51,9 +51,12 @@
         border: 0;
     }
 
+    .hamburger-indicator, .hamburger-content{
+        display: block;
+    }
+
     .hamburger-indicator{
         margin-bottom: 5px;
-        display: block;
     }
 
     .hamburger-indicator::after{
@@ -62,10 +65,6 @@
 
     .hamburger-indicator img{
         display: none;
-    }
-
-    .hamburger-content{
-        display: block;
     }
     
     .list-of-posts{

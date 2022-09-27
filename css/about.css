@@ -2,6 +2,10 @@ h1, h2{
     margin-bottom: 0;
 }
 
+.knowledge-is-power, .knowledge-is-power-img{
+    display: grid;
+}
+
 main section:first-child{
     margin-bottom: 40px;
 }
@@ -11,7 +15,6 @@ p{
 }
 
 .knowledge-is-power{
-    display: grid;
     gap: 10px;
 }
 
@@ -20,7 +23,6 @@ p{
 }
 
 .knowledge-is-power-img {
-    display: grid;
     align-items: center;
     justify-content: center;
 }

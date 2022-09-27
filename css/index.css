@@ -30,8 +30,18 @@ h1{
     padding-top: 30px;
 }
 
-.carousel .controls button{
+.next, .back{
     padding: 10px 15px;
+    background-color: #0C6452;
+    border: none;
+    color: #fff;
+    border: 1px solid #0C6452;
+    font-size: 1rem;
+}
+
+.next:hover, .back:hover{
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .carousel .controls img{
@@ -59,6 +69,12 @@ h1{
     background-color: #000;
 }
 
-.hidden{
-    display: none;
+.disabled{
+    color: #0C6452;
+    background-color: #fff;
+}
+
+.disabled:hover{
+    cursor: default;
+    text-decoration: none;
 }

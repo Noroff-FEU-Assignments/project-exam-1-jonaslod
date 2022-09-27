@@ -7,66 +7,63 @@ const posts = await fetchFromApi(`${baseUrl}posts?per_page=20`);
 const categories = await fetchFromApi(`${baseUrl}categories?per_page=20`);
 
 const carousel = document.querySelector(".carousel .content");
-const controlsTop = document.querySelector(".controls-top");
+const backBtns = document.querySelectorAll(".back");
+const nextBtns = document.querySelectorAll(".next");
+const placements = document.querySelectorAll(".carousel .controls .placement");
 
 try {
+    const numberOfPosts = posts.length;
     const numberOfPostsToShow = 3;
     let firstPostIndex = 0;
     
     document.querySelectorAll(".carousel .controls button").forEach((btn) => {
         btn.addEventListener("click", (event) => {
-            moveCarousel(event.currentTarget)
+            showCarousel(event.currentTarget.className);
         });
     });
-
-    function moveCarousel(movement){
-        if(movement.className === "cta next"){
-            firstPostIndex += numberOfPostsToShow;
-            if(firstPostIndex >= posts.length){
-                firstPostIndex = 0;
-            }
-        }
-        else{
-            firstPostIndex -= numberOfPostsToShow;
-            if(firstPostIndex < 0){
-                //Calculate the index of the first post in the last pair of posts (each pair containing numberOfPostsToShow posts)
-                const pairs = posts.length / numberOfPostsToShow;
-                const decimal = pairs - Math.floor(pairs);
-                firstPostIndex = posts.length - (numberOfPostsToShow * decimal);
-            }
-        }
-        showCarousel();
-        if(window.innerWidth < 800){
-            document.querySelector(".carousel").scrollIntoView();
-        }
-    }
     
-    function showCarousel(){
-        controlsTop.classList.remove("hidden");
+    function showCarousel(btn = ""){
+        if(btn){
+            firstPostIndex = (btn === "next") ? (firstPostIndex += numberOfPostsToShow) : (firstPostIndex -= numberOfPostsToShow);
+            if(window.innerWidth <= 800){
+                document.querySelector(".carousel").scrollIntoView();
+            }
+        }
+
         carousel.innerHTML = "";
-        for(let i = firstPostIndex; i < (firstPostIndex + numberOfPostsToShow); i++){
-            if(i < posts.length){
+        let i;
+        for(i = firstPostIndex; i < firstPostIndex + numberOfPostsToShow; i++){
+            if(i < numberOfPosts){
                 displayPostShowcase(carousel, posts[i], categories);
             }
             else{
-                controlsTop.classList.add("hidden");
                 break;
             }
         }
 
+        manageBtns(nextBtns, (i >= numberOfPosts));
+        manageBtns(backBtns, (firstPostIndex <= 0));
+
         let placementHtml = `<div class="showcase">`;
-        for(let i = 0; i < Math.ceil(posts.length/numberOfPostsToShow); i++){
-            if(i === firstPostIndex/numberOfPostsToShow){
-                placementHtml += `<div class="current"></div>`;
-            }
-            else{
-                placementHtml += "<div></div>";
-            }
+        for(let j = 0; j < Math.ceil(numberOfPosts/numberOfPostsToShow); j++){
+            placementHtml += (j === firstPostIndex/numberOfPostsToShow) ? `<div class="current"></div>` : "<div></div>";
         }
         placementHtml += "</div>";
 
-        document.querySelectorAll(".carousel .controls .placement").forEach((placement) => {
+        placements.forEach((placement) => {
             placement.innerHTML = placementHtml;
+        });
+    }
+
+    function manageBtns(btns, disabled = false){
+        btns.forEach((btn) => {
+            btn.disabled = disabled;
+            if(disabled){
+                btn.classList.add("disabled");
+            }
+            else{
+                btn.classList.remove("disabled");
+            }
         });
     }
     

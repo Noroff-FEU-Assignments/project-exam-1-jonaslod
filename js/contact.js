@@ -58,7 +58,6 @@ async function validateForm(event){
         }
         catch (error) {
             showError(feedback, "An error occurred while trying to send your message, try again later.");
-            console.log(error);
         }
     }
 

@@ -25,7 +25,7 @@
     margin-bottom: 70px;
 }
 
-.post-comments{
+.post-comments, .modal{
     display: none;
 }
 
@@ -64,20 +64,24 @@
 .posted-comments .comment{
     border: 1px solid;
     border-radius: 10px;
-    padding: 10px 20px;
+    padding: 5px 20px;
 }
 
 .author{
     gap: 10px;
+    margin-top: 16px;
 }
 
-.author div{   
+.author .profile-image{   
     width: 35px;
     height: 35px;
 }
 
+.author-details p{
+    margin: 0;
+}
+
 .modal{
-    display: none;
     top: 0;
     left: 0;
     height: 100%;

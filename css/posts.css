@@ -8,9 +8,6 @@
 
 .list .content, .sort{
     flex-direction: column;
-}
-
-.list .content{
     gap: 20px;
 }
 
@@ -51,7 +48,6 @@ h2, .search-feedback p{
     border-bottom: 1px solid;
     margin-bottom: 20px;
     padding-bottom: 25px;
-    gap: 20px;
 }
 
 h3{

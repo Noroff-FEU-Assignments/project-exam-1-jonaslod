@@ -1,6 +1,7 @@
 import fetchFromApi from "./components/fetchFromApi.js";
 import { baseUrl, username, applicationPassword } from "./components/apiInfo.js";
 import checkUndefined from "./components/checkUndefined.js";
+import formatDate from "./components/formatDate.js";
 import findInCategories from "./components/findInCategories.js";
 import showError from "./components/showError.js";
 import postToApi from "./components/postToApi.js";
@@ -21,13 +22,6 @@ const modal = document.querySelector(".modal");
 try {
     const title = checkUndefined(post.title.rendered, " title");
     const postCategories = checkUndefined(post.categories, " categories");
-    let date = checkUndefined(post.date, " date");
-    if(date!="undefined date"){
-        const year = date.slice(0,4);
-        const month = date.slice(5,7);
-        const day = date.slice(8,10);
-        date = `${day}/${month}/${year}`;
-    }
     const content = checkUndefined(post.content.rendered, " content");
 
     document.title = `${title} | The Library`;
@@ -35,24 +29,14 @@ try {
     pageContent.innerHTML = `
         <h1>${title}</h1>
         <div class="categories"><img src="../images/icon/category-icon.png" alt="List of categories"/>${findInCategories(postCategories, categories)}</div>
-        <div class="date"><img src="images/icon/date-icon.png" alt="Post date"/>${date}</div>
+        <div class="date"><img src="images/icon/date-icon.png" alt="Post date"/>${formatDate(post.date)}</div>
         ${content}
     `;
 
-    const images = document.querySelectorAll(".post-content figure img");
-
-    images.forEach((image) => {
+    document.querySelectorAll(".post-content figure img").forEach((image) => {
         image.addEventListener("click", (event) => {
             showModal(event.target);
         });
-    });
-
-    document.querySelector(".post-comments").style.display = "block";
-
-    modal.addEventListener("click", (event) => {
-        if(event.target.className != "image-showcase"){
-            modal.style.display = "none";
-        }
     });
 
     function showModal(image){
@@ -66,6 +50,16 @@ try {
             </div>
         `;
     }
+
+    modal.addEventListener("click", (event) => {
+        if(event.target.className != "image-showcase"){
+            modal.style.display = "none";
+        }
+    });
+
+    document.querySelector(".post-comments").style.display = "block";
+
+    showComments();
 }
 catch (error) {
     showError(pageContent, "Blog post could not be found.");
@@ -74,22 +68,22 @@ catch (error) {
 async function postComment(event){
     event.preventDefault();
 
-    const name = document.querySelector("#author_name").value;
-    const comment = document.querySelector("#content").value;
+    const nameInput = document.querySelector("#author_name").value;
+    const commentInput = document.querySelector("#content").value;
 
-    if(name.trim() && comment.trim()){
+    if(nameInput.trim() && commentInput.trim()){
         feedback.innerHTML = `<span class="italic">Loading ...</span>`;
         try {
             const url = `${baseUrl}comments?post=${id}`;
-            const formData = JSON.stringify({
-                author_name: name,
-                content: comment,
+            const comment = JSON.stringify({
+                author_name: nameInput,
+                content: commentInput,
                 status: "approved"
             });
 
             const options = {
                 method: "POST",
-                body: formData,
+                body: comment,
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Basic ${btoa(username + ":" + applicationPassword)}`
@@ -113,7 +107,6 @@ async function postComment(event){
         }
         catch (error) {
             showError(feedback, "An error occurred while trying to post your comment, try again later.");
-            console.log(error);
         }
     }
     else{
@@ -126,21 +119,31 @@ async function showComments(){
     const postedComments = await fetchFromApi(`${baseUrl}comments?post=${id}`);
 
     try {
-        if(typeof postedComments === "object" && postedComments.length>0){
-            postedComments.forEach((comment) => {
-                let commentAuthor = checkUndefined(comment.author_name, " author");
-                let commentContent = checkUndefined(comment.content.rendered.replaceAll("<p>", "").replaceAll("</p>", ""), " comment");
+        if(typeof postedComments === "object" && postedComments.length > 0){
+            postedComments.forEach((postedComment) => {
+                const authorName = document.createElement("span");
+                authorName.setAttribute("class", "bold");
+                authorName.innerText = checkUndefined(postedComment.author_name, " author");
+                const author = document.createElement("p");
+                author.appendChild(authorName);
+                author.innerHTML += " says:";
+
+                const date = document.createElement("p");
+                date.innerText = "(" + formatDate(postedComment.date, true) + ")";
+
+                const authorDetails = document.createElement("div");
+                authorDetails.setAttribute("class", "author-details");
+                authorDetails.appendChild(author);
+                authorDetails.appendChild(date);
 
                 const authorWrapper = document.createElement("div");
                 authorWrapper.setAttribute("class", "author");
                 authorWrapper.innerHTML = `<div class="profile-image"><img src="images/icon/profile-icon.png" alt="Profile icon"/></div>`;
-
-                const author = document.createElement("p");
-                author.innerText = commentAuthor + " says:";
-                authorWrapper.appendChild(author);
+                authorWrapper.appendChild(authorDetails);
 
                 const commentWrapper = document.createElement("p");
-                commentWrapper.innerText = commentContent;
+                commentWrapper.setAttribute("class", "italic");
+                commentWrapper.innerText = checkUndefined(postedComment.content.rendered.replaceAll("<p>", "").replaceAll("</p>", ""), " comment");
 
                 const currentComment = document.createElement("div");
                 currentComment.setAttribute("class", "comment");
@@ -163,5 +166,3 @@ async function showComments(){
         showError(document.querySelector(".comments"), "Comments could not be loaded.");
     }
 }
-
-showComments();
