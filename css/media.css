@@ -1,83 +1,87 @@
 @media (min-width: 600px) {
     /*Navigation and footer
     __________________________________*/
-    .navigation-hamburger{
+    .navigation-hamburger {
         display: none;
     }
 
-    nav ul{
+    nav ul {
         display: flex;
         padding-bottom: 0;
     }
 
-    nav ul, footer ul{
+    nav ul,
+    footer ul {
         flex-direction: row;
     }
 
-    nav ul li a{
+    nav ul li a {
         padding: 15px 20px;
     }
 
-    footer ul li{
+    footer ul li {
         border-left: 1px solid;
         padding-left: 10px;
     }
 
-    footer ul li:last-child{
+    footer ul li:last-child {
         border-right: 1px solid;
         padding-right: 10px;
     }
 
     /*Post page
     __________________________________*/
-    .post-content, .post-comments{
+    .post-content,
+    .post-comments {
         padding: 0 20px;
     }
-    
-    .book-cover{
+
+    .book-cover {
         float: left;
         margin: 0 25px 20px 0;
     }
 
-    .additional-photo{
+    .additional-photo {
         float: right;
         margin: 0 0 20px 25px;
     }
 
     /*List of blog posts page
     __________________________________*/
-    .hamburger-indicator, .hamburger-content{
+    .hamburger-indicator,
+    .hamburger-content {
         padding: 0;
         border: 0;
     }
 
-    .hamburger-indicator, .hamburger-content{
+    .hamburger-indicator,
+    .hamburger-content {
         display: block;
     }
 
-    .hamburger-indicator{
+    .hamburger-indicator {
         margin-bottom: 5px;
     }
 
-    .hamburger-indicator::after{
+    .hamburger-indicator::after {
         content: ":";
     }
 
-    .hamburger-indicator img{
+    .hamburger-indicator img {
         display: none;
     }
-    
-    .list-of-posts{
+
+    .list-of-posts {
         display: flex;
         flex-direction: row-reverse;
         gap: 20px;
     }
 
-    .list-of-posts .list{
+    .list-of-posts .list {
         flex: 2;
     }
 
-    .list-of-posts .sort{
+    .list-of-posts .sort {
         flex: 1;
         border-left: 1px solid;
         border-bottom: none;
@@ -88,29 +92,29 @@
 @media (min-width: 800px) {
     /*Index page
     __________________________________*/
-    .carousel .content{
+    .carousel .content {
         grid-template: 1fr / repeat(3, 1fr);
     }
 
-    .carousel .controls-top{
+    .carousel .controls-top {
         display: none;
     }
 
-    .carousel .post{
+    .carousel .post {
         min-height: 500px;
     }
 
     /*About page
     __________________________________*/
-    .knowledge-is-power{
+    .knowledge-is-power {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .knowledge-is-power-img{
+    .knowledge-is-power-img {
         margin-left: 60px;
     }
 
-    .knowledge-is-power-img img{
+    .knowledge-is-power-img img {
         max-width: 300px;
     }
 }

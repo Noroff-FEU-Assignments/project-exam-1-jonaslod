@@ -1,65 +1,76 @@
-.list .controls .cta, .hamburger-checkbox, .hamburger-content{
+.list .controls .cta,
+.hamburger-checkbox,
+.hamburger-content {
     display: none;
 }
 
-.list .content, .sort, .hamburger-indicator{
+.list .content,
+.sort,
+.hamburger-indicator {
     display: flex;
 }
 
-.list .content, .sort{
+.list .content,
+.sort {
     flex-direction: column;
     gap: 20px;
 }
 
-h2, .search-feedback p{
+h2,
+.search-feedback p {
     margin: 0;
 }
 
-#search, .hamburger-indicator, .hamburger-content{
+#search,
+.hamburger-indicator,
+.hamburger-content {
     border: 1px solid #000;
 }
 
-.hamburger-content{
+.hamburger-content {
     border-top: 0;
     padding: 10px 5px;
 }
 
-.hamburger-indicator{
+.hamburger-indicator {
     padding: 5px 10px;
     align-items: center;
     justify-content: space-between;
 }
 
-.hamburger-indicator img{
+.hamburger-indicator img {
     width: 30px;
     height: 30px;
-    transition: transform 0.5s;
+    transition: transform 0.37s;
 }
 
-#categories-hamburger:checked ~ .available-categories, #sort-by-hamburger:checked ~ .available-sorting, #search{
+#categories-hamburger:checked ~ .available-categories,
+#sort-by-hamburger:checked ~ .available-sorting,
+#search {
     display: block;
 }
 
-#categories-hamburger:checked ~ .categories-hamburger-indicator img, #sort-by-hamburger:checked ~ .sort-by-hamburger-indicator img{
-    transform: rotate(180deg);
+#categories-hamburger:checked ~ .categories-hamburger-indicator img,
+#sort-by-hamburger:checked ~ .sort-by-hamburger-indicator img {
+    transform: rotate(-180deg);
 }
 
-.sort{
+.sort {
     border-bottom: 1px solid;
     margin-bottom: 20px;
     padding-bottom: 25px;
 }
 
-h3{
+.post h3 {
     margin-top: 16px;
     margin: 0 0 20px 0;
 }
 
-#search{
+#search {
     padding: 10px;
 }
 
-.controls{
+.controls {
     text-align: center;
     margin-top: 20px;
 }

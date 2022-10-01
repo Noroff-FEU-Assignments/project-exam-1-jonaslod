@@ -1,74 +1,61 @@
-import fetchFromApi from "./components/fetchFromApi.js";
+import fetchApi from "./components/fetchApi.js";
 import { baseUrl } from "./components/apiInfo.js";
 import displayPostShowcase from "./components/displayPostShowcase.js";
 import showError from "./components/showError.js";
 
-const posts = await fetchFromApi(`${baseUrl}posts?per_page=20`);
-const categories = await fetchFromApi(`${baseUrl}categories?per_page=20`);
-
+const carouselWrapper = document.querySelector(".carousel");
 const carousel = document.querySelector(".carousel .content");
 const backBtns = document.querySelectorAll(".back");
 const nextBtns = document.querySelectorAll(".next");
 const placements = document.querySelectorAll(".carousel .controls .placement");
 
+const numberOfPostsToShow = 3;
+let firstPostIndex = 0;
+
 try {
+    const posts = await fetchApi(`${baseUrl}posts?per_page=20&_embed=wp:term`);
     const numberOfPosts = posts.length;
-    const numberOfPostsToShow = 3;
-    let firstPostIndex = 0;
-    
+    showCarousel();
+
     document.querySelectorAll(".carousel .controls button").forEach((btn) => {
         btn.addEventListener("click", (event) => {
             showCarousel(event.currentTarget.className);
         });
     });
-    
-    function showCarousel(btn = ""){
-        if(btn){
-            firstPostIndex = (btn === "next") ? (firstPostIndex += numberOfPostsToShow) : (firstPostIndex -= numberOfPostsToShow);
-            if(window.innerWidth <= 800){
-                document.querySelector(".carousel").scrollIntoView();
+
+    function showCarousel(btn = false) {
+        if (btn) {
+            firstPostIndex = btn === "next" ? (firstPostIndex += numberOfPostsToShow) : (firstPostIndex -= numberOfPostsToShow);
+            if (window.innerWidth <= 800) {
+                carouselWrapper.scrollIntoView();
             }
         }
 
         carousel.innerHTML = "";
-        let i;
-        for(i = firstPostIndex; i < firstPostIndex + numberOfPostsToShow; i++){
-            if(i < numberOfPosts){
-                displayPostShowcase(carousel, posts[i], categories);
-            }
-            else{
-                break;
-            }
-        }
+        const postsToShow = posts.slice(firstPostIndex, firstPostIndex + numberOfPostsToShow);
+        postsToShow.forEach((post) => displayPostShowcase(carousel, post));
 
-        manageBtns(nextBtns, (i >= numberOfPosts));
-        manageBtns(backBtns, (firstPostIndex <= 0));
+        manageBtns(nextBtns, postsToShow.length < numberOfPostsToShow);
+        manageBtns(backBtns, firstPostIndex <= 0);
 
         let placementHtml = `<div class="showcase">`;
-        for(let j = 0; j < Math.ceil(numberOfPosts/numberOfPostsToShow); j++){
-            placementHtml += (j === firstPostIndex/numberOfPostsToShow) ? `<div class="current"></div>` : "<div></div>";
+        for (let i = 0; i < Math.ceil(numberOfPosts / numberOfPostsToShow); i++) {
+            placementHtml += i === firstPostIndex / numberOfPostsToShow ? `<div class="current"></div>` : "<div></div>";
         }
         placementHtml += "</div>";
-
-        placements.forEach((placement) => {
-            placement.innerHTML = placementHtml;
-        });
+        placements.forEach((placement) => (placement.innerHTML = placementHtml));
     }
 
-    function manageBtns(btns, disabled = false){
+    function manageBtns(btns, disabled = false) {
         btns.forEach((btn) => {
             btn.disabled = disabled;
-            if(disabled){
+            if (disabled) {
                 btn.classList.add("disabled");
-            }
-            else{
+            } else {
                 btn.classList.remove("disabled");
             }
         });
     }
-    
-    showCarousel();
-}
-catch {
-    showError(document.querySelector(".carousel"), "Could not load latest blog posts.");
+} catch {
+    showError(carouselWrapper, "Could not load latest blog posts.");
 }

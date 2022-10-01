@@ -1,24 +1,26 @@
-h1, h2{
+h1,
+h2 {
     margin-bottom: 0;
 }
 
-.knowledge-is-power, .knowledge-is-power-img{
+.knowledge-is-power,
+.knowledge-is-power-img {
     display: grid;
 }
 
-main section:first-child{
+main section:first-child {
     margin-bottom: 40px;
 }
 
-p{
+p {
     margin-top: 8px;
 }
 
-.knowledge-is-power{
+.knowledge-is-power {
     gap: 10px;
 }
 
-.knowledge-is-power h2{
+.knowledge-is-power h2 {
     grid-column: -1/1;
 }
 
@@ -27,7 +29,7 @@ p{
     justify-content: center;
 }
 
-.knowledge-is-power-img img{
+.knowledge-is-power-img img {
     width: 100%;
     max-width: 250px;
     box-shadow: 0 0 10px 5px #000;

@@ -1,80 +1,85 @@
-h1{
+h1 {
     margin-bottom: 0;
 }
 
-.carousel .controls{
+.carousel .controls {
     text-align: center;
 }
 
-#next, .back, .placement{
+#next,
+.back,
+.placement {
     display: inline-block;
 }
 
-.cta-wrapper, .placement .showcase{
+.cta-wrapper,
+.placement .showcase {
     display: flex;
 }
 
-.cta-wrapper{
+.cta-wrapper {
     justify-content: center;
     margin-top: 30px;
 }
 
-.carousel .content{
+.carousel .content {
     display: grid;
     gap: 10px;
     margin: 20px 0;
 }
 
-.carousel{
+.carousel {
     margin-top: 30px;
     padding-top: 30px;
 }
 
-.next, .back{
+.next,
+.back {
     padding: 10px 15px;
-    background-color: #0C6452;
+    background-color: #0c6452;
     border: none;
     color: #fff;
-    border: 1px solid #0C6452;
+    border: 1px solid #0c6452;
     font-size: 1rem;
 }
 
-.next:hover, .back:hover{
+.next:hover,
+.back:hover {
     cursor: pointer;
     text-decoration: underline;
 }
 
-.carousel .controls img{
+.carousel .controls img {
     display: block;
     margin: 0 auto;
     width: 20px;
 }
 
-.placement{
+.placement {
     margin: 0 10px;
 }
 
-.placement .showcase{
+.placement .showcase {
     gap: 5px;
 }
 
-.placement .showcase div{
+.placement .showcase div {
     border: 1px solid;
     width: 10px;
     height: 10px;
     border-radius: 100%;
 }
 
-.placement .showcase .current{
+.placement .showcase .current {
     background-color: #000;
 }
 
-.disabled{
-    color: #0C6452;
+.disabled {
+    color: #0c6452;
     background-color: #fff;
 }
 
-.disabled:hover{
+.disabled:hover {
     cursor: default;
     text-decoration: none;
 }

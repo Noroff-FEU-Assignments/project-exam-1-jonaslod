@@ -1,105 +1,125 @@
-.book-cover img, .additional-photo img, .modal, .modal .img-wrapper img, .author div img, .close-modal img{
+.book-cover img,
+.additional-photo img,
+.modal,
+.modal .img-wrapper img,
+.author div img,
+.close-modal img {
     width: 100%;
 }
 
-.modal, .close-modal{
+.modal,
+.close-modal {
     position: fixed;
 }
 
-.date{
-    margin-bottom: 30px;   
+.date {
+    margin-bottom: 30px;
 }
 
-.book-cover, .additional-photo{
+.book-cover,
+.additional-photo {
     display: block;
     margin: 0 auto;
     width: 80%;
     max-width: 200px;
 }
 
-.book-cover img, .additional-photo img{
+.book-cover img,
+.additional-photo img {
     height: auto;
 }
 
-.post-content{
+.post-content {
     margin-bottom: 70px;
 }
 
-.post-comments, .modal{
+.post-comments,
+.modal {
     display: none;
 }
 
-.post-comments form, .post-comments form div, .posted-comments, .author{
+.post-comments form,
+.post-comments form div,
+.posted-comments,
+.author {
     display: flex;
 }
 
-.post-comments form, .post-comments form div, .posted-comments{
+.post-comments form,
+.post-comments form div,
+.posted-comments {
     flex-direction: column;
 }
 
-.post-comments form, .posted-comments{
+.post-comments form,
+.posted-comments {
     gap: 20px;
 }
 
-.author, .modal{
+.author,
+.modal {
     align-items: center;
 }
 
-.post-comments form input{
+.post-comments form input {
     padding: 10px 5px;
 }
 
-.post-comments form button{
+.post-comments form button {
     margin-top: 10px;
 }
 
-.error{
-    color: #F00;
+.error {
+    color: #f00;
 }
 
-.success{
+.success {
     color: #060;
 }
 
-.posted-comments .comment{
+.posted-comments .comment {
     border: 1px solid;
     border-radius: 10px;
     padding: 5px 20px;
 }
 
-.author{
+.author {
     gap: 10px;
     margin-top: 16px;
 }
 
-.author .profile-image{   
+.author .profile-image {
     width: 35px;
     height: 35px;
 }
 
-.author-details p{
+.author-details p {
     margin: 0;
 }
 
-.modal{
+.modal {
     top: 0;
     left: 0;
     height: 100%;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.80);
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
-.modal .img-wrapper{
+.modal .img-wrapper {
     text-align: center;
 }
 
-.modal .img-wrapper img{
+.modal .img-wrapper img {
     max-width: 80vw;
     max-height: 80vh;
 }
 
-.close-modal{
+.close-modal {
     top: 10px;
     right: 10px;
     padding: 10px;
+}
+
+form textarea {
+    padding: 5px;
 }
