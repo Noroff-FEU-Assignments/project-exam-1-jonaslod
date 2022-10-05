@@ -1,67 +1,30 @@
-## Project Exam 1
+# Project Exam 1
+![project-exam-1_1](https://user-images.githubusercontent.com/95305401/194045035-6f2c0647-370e-4560-b5f4-b0ec1fe55d78.jpg)
 
-## Goal
+## Description
 
-To put into practice the skills learned over your first year of studies.
+The brief in Project Exam 1 was to create a personal blog. I chose to create a blog about books. The idea was that the blog was a space where I could share my thoughts about the different books I’ve read, and invite discussion from visiting users. The blog consists of 5 pages:
+- A home page with a carousel showing the latest posts uploaded to the blog.
+- A list of posts page where users can view all posts or search through the posts, using an input for text, checkboxes for categories and radio buttons for sorting by new/old.
+- A post specific page which is dynamically built based on which post the user selected. The user can also read/post comments under each post, which (if something is written) will be posted to the WordPress API.
+- An about page detailing the goal and history of the blog.
+- A contact page where the user can submit a form (if all fields are valid) to the API.
 
-## Brief
-You have been tasked with creating a blog site. You can choose the design and topics covered on the blog, but it should have at least the following pages:
--	Home page
--	About page
--	List of blog posts
--	Blog post specific pages
--	Contact page.
+## Built With
+The project was created using HTML, CSS and JavaScript and includes a headless WordPress API used for storing blog posts.
 
-### Home Page
-The home page should have a ‘Latest Posts’ section which uses a carousel (slider) for users to click to view more posts. For example, by default the user can see four posts, then they can click an arrow on the right to view the next four posts, and click it again to view the next four posts. The user can also click back to view results they had previously seen. This must be implemented for desktop at least, but if you want a simpler layout for mobile, you can change it from being in a carousel.
+## Getting Started
+The project does not contain any dependencies, and can easily be installed/run by cloning the GitHub repo.
+```
+git clone https://github.com/Noroff-FEU-Assignments/project-exam-1-jonaslod.git
+```
 
-### Blog Page
+## Contributing
+The project is uploaded on a public GitHub repository. If you wish to contribute you are welcome to do so. I am relatively new to front-end development, and I am sure there are many improvements to be made in the project. Be sure to open a pull request so the code can be reviewed.
 
-The blog posts page should show the first 10 blogs, and the user should click to view more results which then show underneath the first 10 blogs.
+## Contact
+[My LinkedIn page](www.linkedin.com)
 
-### Blog Specific Page
-
-The content of the blog specific page should be dynamically built using a query string parameter based on whatever link the user clicked. The title of the blog specific page should change based on the blog that has been clicked on e.g. “My Blog | An Article I Wrote”.
-
-If images on the blog post page are clicked, a modal should appear giving the user a bigger view of that image. Clicking outside the image should hide the modal.
-
-### Contact page
-
-Create a contact us page, there should be 4 textboxes on this page.
--	Name (Should be more than 5 characters long)
--	Email address (Must be a valid email address)
--	Subject (Should be more than 15 characters long)
--	Message content (Should be more than 25 characters long)
-
-Please use JavaScript for validation, show error messages if the values in the textboxes do not meet the requirements.
-
-### WordPress
-
-The content for your website will be stored on a WordPress installation used as a Headless CMS. It’s important to note that we are only using WordPress to provide an API and add content for the blog. You should not submit a link to a WordPress site, but build your website using HTML, CSS and JavaScript and making a call to the WordPress REST API to fetch the data. 
-
-The project has two aspects:
--	API from your WordPress installation
--	Your website built with HTML, CSS and JavaScript
-
-You will need to add at least 12 blogs for your website. You can use lorem ipsum for paragraphs if you need, but headings, images etc. should all make sense.
-
-Note that this is an exam, and therefore tutor support will be limited as per the study plan.
-
-## Level 1 Process
-
-1.	Decide on the theme for the blog you’re going to make
-2.	Create a prototype of the website
-3.	Install WordPress on your web host and add the blogs on the admin panel. 
-4.	Use the GitHub repo created by GitHub Classroom for your files and deploy to Netlify
-5.	Build your website using HTML, CSS and JavaScript making a call to the WordPress REST API to fetch your data.
-6.	Install Hotjar on your website.
-7.	Ask users to test your website, and adjust based on their feedback and any insights from Hotjar.
-8.	Write a report documenting your project (template provided in this repository).
-9.	Submit your report as a PDF and a link to both your Netlify deployment and your GitHub repo.
- 
-## Level 2 Process (optional)
-
-1.	You can try adding a sort, filter, or search to the blog posts page allowing users to find the blog post more easily that they’re looking for. 
-2.	Post the data from the contact form to WordPress so you have the details saved.
-3.	Allow users to submit comments on a blog post, and post this data to WordPress
-
+## Additional screenshots
+![project-exam-1_2](https://user-images.githubusercontent.com/95305401/194045094-93de36eb-d70a-4c53-b06a-19585b7259c6.jpg)
+![project-exam-1_3](https://user-images.githubusercontent.com/95305401/194045110-592900fe-a86c-443e-b0fc-48395665d98e.jpg)
