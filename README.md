@@ -20,7 +20,7 @@ git clone https://github.com/Noroff-FEU-Assignments/project-exam-1-jonaslod.git
 ```
 
 ## Contributing
-The project is uploaded on a public GitHub repository. If you wish to contribute you are welcome to do so. I am relatively new to front-end development, and I am sure there are many improvements to be made in the project. Be sure to open a pull request so the code can be reviewed.
+If you wish to contribute by sending in feedback, you are welcome to do so. I am relatively new to front-end development, and I am sure there are many improvements to be made. You are also able to submit code to the project, since the project is uploaded on a public GitHub repository. If you want to do so, be sure to open a pull request so the code can be reviewed.
 
 ## Contact
 [My LinkedIn page](www.linkedin.com)
