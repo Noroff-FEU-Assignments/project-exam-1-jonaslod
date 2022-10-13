@@ -23,7 +23,7 @@ git clone https://github.com/Noroff-FEU-Assignments/project-exam-1-jonaslod.git
 If you wish to contribute by sending in feedback, you are welcome to do so. I am relatively new to front-end development, and I am sure there are many improvements to be made. You are also able to submit code to the project, since the project is uploaded on a public GitHub repository. If you want to do so, be sure to open a pull request so the code can be reviewed.
 
 ## Contact
-[My LinkedIn page](www.linkedin.com)
+[My Twitter profile](https://twitter.com/jonaslodcontact)
 
 ## Additional screenshots
 ![project-exam-1_2](https://user-images.githubusercontent.com/95305401/194045094-93de36eb-d70a-4c53-b06a-19585b7259c6.jpg)
