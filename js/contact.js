@@ -38,7 +38,7 @@ async function validateForm(event) {
             <span class="italic">Loading ...</span>
         `;
         try {
-            const url = "https://marieogjonas.com/jonas/skole/the-library/wp-json/contact-form-7/v1/contact-forms/140/feedback";
+            const url = "https://marieogjonas.com/jonas/skole/the-library/wp-json/contact-form-7/v1/contact-forms/189/feedback";
             const options = {
                 method: "POST",
                 body: new FormData(form),
